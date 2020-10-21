@@ -1,12 +1,8 @@
-body{
-    background-color: red;
-}
-
 .container-header{
-    background-color: #197163;
-    color: #ffffde;
-    border-radius: 15px;
+    background-color: #004a7c;
+    color: #4575ac;
     display: flexbox;
+    padding: 30px;
 }
 
 .container-header header img{
@@ -14,25 +10,47 @@ body{
     height: 50px;
 }
 
-.navbar-brand{
-    color: #ffffde;
-}
-
-.navbar-brand:hover{
-    color:#51b495;
+ul {
+    list-style: none;
 }
 
 .nav-link{
-    color: #ffffde;
-}
-
-.nav-link:hover{
-    color: #51b495;
+    color: #005691;
 }
 
 .container-menu{
-    background-color: #158467;
-    border-radius: 15px;
+    background-color:#ffffff;
+}
+
+.navbar .nav-item .dropdown-menu{  
+    display:block; 
+    opacity: 0;  
+    visibility: hidden; 
+    transition:.3s; 
+    margin-top:0;  
+    }    
+
+.navbar .nav-item:hover .nav-link{ 
+    color:#005691;  
+}
+
+.navbar .dropdown-menu.fade-down{ 
+    top:80%; 
+    transform: rotateX(-75deg); 
+    transform-origin: 0% 0%; 
+}
+
+.navbar .dropdown-menu.fade-up{ 
+    top:180%;  
+}
+
+.navbar .nav-item:hover .dropdown-menu{ 
+    transition: .3s; 
+    opacity:1; 
+    visibility:visible; 
+    top:100%; 
+    transform: rotateX(0deg);
+    background-color: #4575ac;
 }
 
 .container-menu p{
@@ -41,13 +59,12 @@ body{
     padding: 25px;
 }
 
-.navbar-toggler{
-    color: blue;
+.navbar-toggler-icon{
+    background-color: blue;
 }
 
 .container-main{
-    background-color: #fadcac ;
-    border-radius: 15px;
+    background-color:#fafafa ;
     height: 400px;
 }
 
@@ -56,11 +73,11 @@ body{
     text-align: center;
     align-items: baseline;
     align-content: center;
-    color:#065446;
+    color:#005691;
     padding-top: 50px;
 }
 
-.container-carrousel{
+.container-carrousel {
     width: 200px;
 }
 
@@ -69,9 +86,13 @@ body{
 }
 
 .container-footer{
-    color: #fadcac ; 
-    background-color: #197163;
-    border-radius: 15px;
-    text-align: justify;
+    color:#e8f1f5; 
+    background-color: #00234f;
+    text-align: center;
     padding: 10px;
+}
+
+.container-footer .row p span a{
+    color: #e8f1f5;
+    font-size: small;
 }
