@@ -15,11 +15,11 @@ ul {
 }
 
 .nav-link{
-    color: #005691;
+    color: white;
 }
 
 .container-menu{
-    background-color:#ffffff;
+    background-color: #4575ac;
 }
 
 .navbar .nav-item .dropdown-menu{  
@@ -31,7 +31,8 @@ ul {
     }    
 
 .navbar .nav-item:hover .nav-link{ 
-    color:#005691;  
+   background-color: white;  
+   color: #00234f;
 }
 
 .navbar .dropdown-menu.fade-down{ 
@@ -68,6 +69,12 @@ ul {
     height: 400px;
 }
 
+.container-main .bienvenido{
+    font-size: 90px;
+    text-align: center;
+    margin:50px auto;
+}
+
 .container-main_info{
     justify-content: center;
     text-align: center;
@@ -76,6 +83,46 @@ ul {
     color:#005691;
     padding-top: 50px;
 }
+
+.container-main .form-turno{
+    width: 80%;
+   margin: auto;
+   display: flex;
+   
+}
+
+.container-main .input{
+    width: 90%;
+    justify-content: center;
+    padding: 10px;
+}
+
+.container-main .input> label{
+   width: 20%;
+   display: inline-block;
+}
+
+.container-main .input input[type="text"], select, input[type="date"]{
+    width:50%;
+	padding:3px 10px;
+	border:1px solid blue;
+	background-color:#f6f6f6;
+	margin: 20px;
+	display:inline-block;
+}
+
+.container-main .form-turno input[type="submit"]{
+    margin:20px auto;
+    width: 15%;
+    padding: 5px;
+    background-color: #4575ac;
+    border: 1px solid blue;
+    color: white;
+    display: block;
+    align-items: center;
+}
+
+
 
 .container-carrousel {
     width: 200px;
