@@ -15,7 +15,7 @@ ul {
 }
 
 .nav-link{
-    color: white;
+    color: #fafafa;
 }
 
 .container-menu{
@@ -31,8 +31,8 @@ ul {
     }    
 
 .navbar .nav-item:hover .nav-link{ 
-   background-color: white;  
-   color: #00234f;
+   color: #fafafa;  
+   background-color: #005691;
 }
 
 .navbar .dropdown-menu.fade-down{ 
