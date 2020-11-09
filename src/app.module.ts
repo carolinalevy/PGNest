@@ -7,6 +7,8 @@ import { RegistrarseService } from './registrarse/registrarse.service';
 import { RegistrarseController } from './registrarse/registrarse.controller';
 import { TurnoController } from './turno/turno.controller';
 import { TurnoService } from './turno/turno.service';
+import { LoginController } from './login/login.controller';
+import { LoginService } from './login/login.service';
 
 @Module({
   imports: [
@@ -15,7 +17,7 @@ import { TurnoService } from './turno/turno.service';
         'client'),
     }),
   ],
-  controllers: [AppController, RegistrarseController, TurnoController],
-  providers: [AppService, RegistrarseService, TurnoService],
+  controllers: [AppController, LoginController, RegistrarseController, TurnoController],
+  providers: [AppService, LoginService, RegistrarseService, TurnoService],
 })
 export class AppModule { }
