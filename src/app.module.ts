@@ -3,6 +3,8 @@ import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { RegistrarseService } from './registrarse/registrarse.service';
+import { RegistrarseController } from './registrarse/registrarse.controller';
 
 @Module({
   imports: [
@@ -11,7 +13,7 @@ import { AppService } from './app.service';
         'client'),
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, RegistrarseController],
+  providers: [AppService, RegistrarseService],
 })
 export class AppModule { }
