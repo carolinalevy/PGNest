@@ -34,5 +34,10 @@ async function saveInfo() {
     }
 }
 
+function mostrarInput(){
+    console.log(password,nombre,apellido,
+        direccion,telefono,cobertura,dni)
+}
+
 let btnRegistro = document.getElementById("btn-registro");
-btnRegistro.addEventListener("click", saveInfo);
+btnRegistro.addEventListener("click", saveInfo, mostrarInput);
