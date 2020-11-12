@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { Registro } from 'src/registrarse/Registro';
 import { LoginService } from './login.service';
 
 @Controller('login')

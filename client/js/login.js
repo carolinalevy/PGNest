@@ -1,7 +1,7 @@
 
 async function validateLogin(e) {
     let user = {
-      name: document.getElementById('formUser').value,
+      nombre: document.getElementById('formUser').value,
       password: document.getElementById('formPassword').value,
     };
   
@@ -15,8 +15,8 @@ async function validateLogin(e) {
   
     if (await respuesta.json()) {
       window.sessionStorage.setItem('userLogged', true);
-      window.sessionStorage.setItem('user', user);
-      window.location.href = 'http://localhost:3000/paginaUsuario';
+      window.sessionStorage.setItem('user', user.nombre);
+      window.location.href = 'http://localhost:3000/paginaUsuario.html';
     }
     else {
       document.getElementById('formUser').focus();
