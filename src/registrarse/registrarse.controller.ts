@@ -17,7 +17,8 @@ export class RegistrarseController {
 
     @Post()
     create(@Body() registro: any): string {
-        return this.registrarseService.create(registro)}
+        return this.registrarseService.create(registro);
+    }
 }
 
 
