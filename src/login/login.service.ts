@@ -20,7 +20,7 @@ export class LoginService {
     }
 
     private getUsers(): Registro[]{
-        let archivo = fs.readFileSync('registrarse/registro.csv', 'utf8');
+        let archivo = fs.readFileSync('resources/registro.csv', 'utf8');
         const elementos = archivo.split('\n')
             .map(p => p.replace('\r', '')).map(p => p.split(','));
         let listaUsers : Registro[] = [];
