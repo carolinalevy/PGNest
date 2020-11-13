@@ -19,7 +19,7 @@ export class TurnoController {
         return this.turnoService.getListaMedicos();
     }
 
-    @Get()
+    @Get('especialidades')
     public getListaDeEspecialidades():Especialidad[]{
         return this.turnoService.getListaEspecialidades();
     }

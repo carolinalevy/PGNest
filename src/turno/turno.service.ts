@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Especialidad } from './Especialidad';
 import { Horario } from './Horario';
 import { Medico } from './Medico';
-import fs from 'fs';
+import * as fs from 'fs';
 
 @Injectable()
 export class TurnoService {
@@ -52,17 +52,13 @@ export class TurnoService {
     }
 
     private loadEspecialidad(): Especialidad[] {
-        let archivo = fs.readFileSync('especialidad.csv', 'utf8');
-        const elementos = archivo.split('\n')
-            .map(p => p.replace('\r', '')).map(p => p.split(','));
-        this.listaEspecialidades = [];
+        let archivo = fs.readFileSync('src/turno/especialidad.csv', 'utf8');
+        const elementos = archivo.split('\n');
+        let listaEspecialidades = [];
         for (let i = 0; i < elementos.length; i++) {
-            let especialidad = new Especialidad(elementos[i][0]);
-            this.listaEspecialidades.push(especialidad);
+            let especialidad = new Especialidad(elementos[i]);
+            listaEspecialidades.push(especialidad);
         }
-        return this.listaEspecialidades;
+        return listaEspecialidades;
     }
-
-
-
 }  

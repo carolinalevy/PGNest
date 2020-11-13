@@ -4,13 +4,14 @@ let listaHorario = [];
 
 
 async function loadListEspecialidad() {
-    let container = document.getElementById('#inputEspecialidad');
+    let container = document.getElementById('inputEspecialidad');
     try {
-        let response = await fetch("./turno");
+        let response = await fetch("/turno/especialidades");
         if (response.ok) {
+            console.log(response);
             let t = await response.json();
             listEspecialidad = t;
-            mostrarTablaEspecialidad();
+            container.innerHTML = mostrarTablaEspecialidad();
         } else {
             container.innerHTML = "Error al cargar";
         }
@@ -21,21 +22,11 @@ async function loadListEspecialidad() {
 }
 
 function mostrarTablaEspecialidad(){
-    html = '';
-
-    for(let i =0; i<listEspecialidad; i++){
-        html += `
-        <option selected>Elegir especialidad...</option>
-                          <option value="1">${listEspecialidad[0]}</option>
-                          <option value="2">${listEspecialidad[1]}</option>
-                          <option value="3">${listEspecialidad[2]}</option>
-                          <option value="4">${listEspecialidad[3]}</option>
-                          <option value="5">${listEspecialidad[4]}</option>
-                          <option value="6">${listEspecialidad[5]}</option>
-                          <option value="7">${listEspecialidad[6]}</option>
-                          <option value="8">${listEspecialidad[7]}</option>
-                          <option value="9">${listEspecialidad[8]}</option>`
+    html = '<option selected>Elegir especialidad...</option> ';
+    for(let i =0; i<listEspecialidad.length; i++){
+        html += `<option value="${i+1}">${listEspecialidad[i].nombreEspecialidad}</option> `
     }
+    return html;
 }
 
 loadListEspecialidad();
