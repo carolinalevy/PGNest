@@ -28,7 +28,7 @@ export class TurnoService {
 
 
     private loadMedico():Medico[] {
-        let archivo = fs.readFileSync('medicos.csv', 'utf8');
+        let archivo = fs.readFileSync('resources/medicos.csv', 'utf8');
         const elementos = archivo.split('\n')
             .map(p => p.replace('\r', '')).map(p => p.split(','));
         this.listaMedicos = [];
@@ -40,7 +40,7 @@ export class TurnoService {
     }
 
     private loadHorario():Horario[]{
-        let archivo = fs.readFileSync('horarios.csv', 'utf8');
+        let archivo = fs.readFileSync('resources/horarios.csv', 'utf8');
         const elementos = archivo.split('\n')
             .map(p => p.replace('\r', '')).map(p => p.split(','));
        this.listaHorarios = [];
@@ -52,7 +52,7 @@ export class TurnoService {
     }
 
     private loadEspecialidad(): Especialidad[] {
-        let archivo = fs.readFileSync('src/turno/especialidad.csv', 'utf8');
+        let archivo = fs.readFileSync('resources/especialidad.csv', 'utf8');
         const elementos = archivo.split('\n');
         let listaEspecialidades = [];
         for (let i = 0; i < elementos.length; i++) {

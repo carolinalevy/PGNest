@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { from } from 'rxjs';
-import fs from 'fs';
+import * as fs from 'fs';
 import { Registro } from './Registro';
 
 @Injectable()
 export class RegistrarseService {
     private listaRegistro: Registro[];
-
 
     // private loadInfo(): void {
     //     let archivo = fs.readFileSync('registro.csv', 'utf8');
@@ -21,25 +20,30 @@ export class RegistrarseService {
     // }
 
     public create(registro: any): string {
-
-        const nuevoRegistro: Registro = new Registro((parseInt(registro.dni)), registro.email, registro.password, registro.getNombre,
+        const nuevoRegistro: Registro = new Registro(registro.dni, registro.email, registro.password, registro.nombre,
             registro.apellido, registro.direccion, registro.celular, registro.cobertura);
 
         if (nuevoRegistro.getDni() && nuevoRegistro.getEmail() && nuevoRegistro.getPassword() && nuevoRegistro.getNombre()
             && nuevoRegistro.getApellido() && nuevoRegistro.getDireccion() && nuevoRegistro.getCelular() && nuevoRegistro.getCobertura()) {
-            this.listaRegistro.push(nuevoRegistro);
+            // this.listaRegistro.push(nuevoRegistro);
             console.log(nuevoRegistro);
-            fs.appendFileSync('registro.csv',
+            fs.appendFileSync('resources/registro.csv',
                 "\n" +
                 nuevoRegistro.getDni() + ","
                 + nuevoRegistro.getEmail() + ","
-                + nuevoRegistro.getPassword() + ',' + nuevoRegistro.getNombre() + ',' + nuevoRegistro.getApellido() + ',' +
-                nuevoRegistro.getDireccion() + ',' + nuevoRegistro.getCelular() + ',' + nuevoRegistro.getCobertura());
+                + nuevoRegistro.getPassword() + ","
+                + nuevoRegistro.getNombre() + "," 
+                + nuevoRegistro.getApellido() + "," 
+                + nuevoRegistro.getDireccion() + "," 
+                + nuevoRegistro.getCelular() + ","
+                + nuevoRegistro.getCobertura()
+            );
             return "ok";
         }
         else {
             return "parametros incorrectos";
         }
-
     }
 }
+
+// mostrar error si los parametros no estan completos --> en js o en service?
