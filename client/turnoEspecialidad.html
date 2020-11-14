@@ -51,7 +51,7 @@
                 <div class="input">
                     <div class="input-group mb-3">
                         <select class="custom-select" id="inputEspecialidad">
-                          
+                
                         </select>
                       </div>
                       <div class="input-group mb-3">
@@ -59,8 +59,8 @@
                           
                         </select>
                       </div>
-                      <input class="form-control" type="text" placeholder="Cobertura médica...">
-                      <input class="form-control" type="date" placeholder="Elegir fecha...">
+                      <input class="form-control" type="text" placeholder="Cobertura médica..." id="inputCoberturaMedica">
+                      <input class="form-control" type="date" placeholder="Elegir fecha..." id="inputFecha">
                       <div class="input-group mb-3">
                         <select class="custom-select" id="inputHorario">
                           <option selected>Elegir horario...</option>
@@ -72,7 +72,8 @@
                           <option value="6">14:00</option>
                         </select>
                       </div>
-                <input type="submit" class="btn-enviar" name="Enviar" value="Confirmar turno">
+                      <button type="button" class="btn btn-outline-secondary" id="btn-confirmarTurno"> Confirmar Turno </button> 
+                      <!-- <input type="submit" class="btn-enviar" name="Enviar" value="Confirmar turno" id="btn-confirmarTurno"> -->
             </form> 
         </div>
         <div class="container-footer">
@@ -134,6 +135,7 @@
         </script>
         <script src="js/manejoUsuario.js"></script>
         <script src="js/turno.js"></script>
+        <script src="js/guardarTurno.js"></script>
 </body>
 
 </html>
