@@ -3,24 +3,27 @@ async function saveTurno() {
     let horario = document.getElementById('inputHorario').value;
     let medico = document.getElementById('inputMedico').value;
     let especialidad = document.getElementById('inputEspecialidad').value;
+    let cobertura = document.getElementById('inputCoberturaMedica').value;
 
     let nuevoTurno = {
         "dia": dia,
         "horario": horario,
         "medico": medico,
-        "especialidad": especialidad
-        //agregar cobertura medica
+        "especialidad": especialidad,
+        "cobertura": cobertura
     }
+    let stringTurno = JSON.stringify(nuevoTurno);
 
     let response = await fetch("/guardar-turno", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', 
         },
-        body: JSON.stringify(nuevoTurno)
+        body: stringTurno
     }
     );
     if (response.ok) {
+        window.sessionStorage.setItem('turnoNuevo', stringTurno);
         window.location.href= "http://localhost:3000/paginaTurnoAsignado.html";
     };
 }

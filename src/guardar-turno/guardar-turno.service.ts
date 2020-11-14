@@ -8,15 +8,16 @@ export class GuardarTurnoService {
 
     public create(turnoGuardado: any) {
         const nuevoTurno: TurnoGuardado = new TurnoGuardado (turnoGuardado.dia, turnoGuardado.horario, turnoGuardado.medico,
-            turnoGuardado.especialidad);
+            turnoGuardado.especialidad, turnoGuardado.cobertura);
         
-        if (nuevoTurno.getDia() && nuevoTurno.getHorario() && nuevoTurno.getMedico() && nuevoTurno.getEspecialidad()) {
+        if (nuevoTurno.getDia() && nuevoTurno.getHorario() && nuevoTurno.getMedico() && nuevoTurno.getEspecialidad() && nuevoTurno.getCobertura()) {
             fs.appendFileSync('resources/turnosGuardados.csv',
                 "\n" +
                 nuevoTurno.getDia() + ','
                 + nuevoTurno.getHorario() + ','
                 + nuevoTurno.getMedico() + ','
-                + nuevoTurno.getEspecialidad()
+                + nuevoTurno.getEspecialidad() + ','
+                + nuevoTurno.getCobertura()
             );
             this.deleteHorario(nuevoTurno.getHorario());
             return "ok";

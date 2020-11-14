@@ -25,7 +25,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown" id="userNameNavLink"> Usuario </a>
                     <ul class="dropdown-menu fade-up">
-                        <li><a class="dropdown-item" href="#"> Sacar turno</a></li>
+                        <li><a class="dropdown-item" href="./turnoEspecialidad.html"> Sacar turno</a></li>
                         <li><a class="dropdown-item" href="#"> Datos personales </a></li>
                         <li><a class="dropdown-item" href="#"> Historial de turnos </a></li>
                         <li><a class="dropdown-item" href="./Index.html"> Cerrar sesión </a></li>
@@ -50,13 +50,13 @@
             <div class="turno">
                 <h4 class="turno-title">Turno Asignado</h4>
                 <p class="turno-text"> 
-                    Su turno con el Dr. "Nombre"
+                    Su turno con el Dr. <strong><span id="nombreMedico" ></span></strong>
                     <br>
-                    ha sido asignado para la fecha "fecha"
+                    ha sido asignado para la fecha <strong><span id="nombreFecha"></span></strong>
                     <br>
-                    en el horario "horario".
+                    en el horario <strong><span id="nombreHorario"></span></strong>.
                     <br>
-                    Presentar su credencial de "Cobertura Medica".
+                    Presentar su credencial <strong><span id="nombreCobertura"></span></strong>.
                 </p>
             </div>
         </div>
@@ -121,7 +121,8 @@
         </div>
     </div>
 
-    <script src="js/manejoUsuario.js"></script>t
+    <script src="js/mostrarTurno.js"></script>
+    <script src="js/manejoUsuario.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>

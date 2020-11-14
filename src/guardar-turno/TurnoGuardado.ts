@@ -3,13 +3,14 @@ export class TurnoGuardado {
     private horario: string;
     private medico: string;
     private especialidad: string;
+    private cobertura: string;
     
-    constructor (dia: Date, horario: string, medico: string, especialidad: string) {
+    constructor (dia: Date, horario: string, medico: string, especialidad: string, cobertura: string) {
         this.dia = dia;
         this.horario = horario;
         this.medico = medico;
         this.especialidad = especialidad;
-        // agregar cobertura medica
+        this.cobertura = cobertura;
     
     }
 
@@ -27,6 +28,10 @@ export class TurnoGuardado {
 
     public getEspecialidad(): string {
         return this.especialidad;
+    }
+
+    public getCobertura(): string {
+        return this.cobertura;
     }
 
 }
