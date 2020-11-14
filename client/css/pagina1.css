@@ -1,22 +1,27 @@
 .container-header{
-    background-color: #004A7C;
-    color: #4575AC;
+    background-color: #004a7c;
+    color: #4575ac;
     display: flexbox;
     padding: 30px;
 }
+
 .container-header header img{
     width: auto;
     height: 50px;
 }
+
 ul {
     list-style: none;
 }
+
 .nav-link{
     color: #005691;
 }
+
 .container-menu{
     background-color:#ffffff;
 }
+
 .navbar .nav-item .dropdown-menu{  
     display:block; 
     opacity: 0;  
@@ -24,70 +29,69 @@ ul {
     transition:.3s; 
     margin-top:0;  
     }    
+
 .navbar .nav-item:hover .nav-link{ 
     color:#005691;  
 }
+
 .navbar .dropdown-menu.fade-down{ 
     top:80%; 
     transform: rotateX(-75deg); 
     transform-origin: 0% 0%; 
 }
+
 .navbar .dropdown-menu.fade-up{ 
     top:180%;  
 }
+
 .navbar .nav-item:hover .dropdown-menu{ 
     transition: .3s; 
     opacity:1; 
     visibility:visible; 
     top:100%; 
     transform: rotateX(0deg);
-    background-color: #4575AC;
+    background-color: #4575ac;
 }
+
 .container-menu p{
     text-align: justify;
     margin: 25px;
     padding: 25px;
 }
 
-/* .navbar-toggler .navbar-toggler-icon{
+.navbar-toggler .navbar-toggler-icon{
     background-color: transparent;
-} */
+
+}
 
 .container-main{
     background-color:#fafafa ;
     height: auto;
+    padding: 30px;
 }
+
 .container-main_info{
     justify-content: center;
-    text-align: justify;
-    align-items: baseline;
+    text-align: center;
+    align-items: center;
     align-content: center;
     color:#005691;
-    padding-top: 50px;
+    padding: 30px;
+    display: flexbox;
 }
 
-.container-main_info h1{
-    text-align: center;
+#formGroupExampleInput{
+    width: 500px;
 }
 
-.container-main_p {
-    margin: 10px;
-    padding: 10px;
-}
-
-.container-carrousel {
-    width: 200px;
-}
-.container-carrousel img{
-    height: 400px;
-}
 .container-footer{
     color:#e8f1f5; 
-    background-color: #00234F;
+    background-color: #00234f;
     text-align: center;
     padding: 10px;
 }
+
 .container-footer .row p span a{
-    color: #E8F1F5;
+    color: #e8f1f5;
     font-size: small;
 }

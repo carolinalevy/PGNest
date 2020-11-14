@@ -1,22 +1,27 @@
 .container-header{
-    background-color: #004A7C;
-    color: #4575AC;
+    background-color: #004a7c;
+    color: #4575ac;
     display: flexbox;
     padding: 30px;
 }
+
 .container-header header img{
     width: auto;
     height: 50px;
 }
+
 ul {
     list-style: none;
 }
+
 .nav-link{
-    color: #005691;
+    color: #fafafa;
 }
+
 .container-menu{
-    background-color:#ffffff;
+    background-color: #4575ac;
 }
+
 .navbar .nav-item .dropdown-menu{  
     display:block; 
     opacity: 0;  
@@ -24,70 +29,117 @@ ul {
     transition:.3s; 
     margin-top:0;  
     }    
+
 .navbar .nav-item:hover .nav-link{ 
-    color:#005691;  
+   color: #fafafa;  
+   background-color: #005691;
 }
+
 .navbar .dropdown-menu.fade-down{ 
     top:80%; 
     transform: rotateX(-75deg); 
     transform-origin: 0% 0%; 
 }
+
 .navbar .dropdown-menu.fade-up{ 
     top:180%;  
 }
+
 .navbar .nav-item:hover .dropdown-menu{ 
     transition: .3s; 
     opacity:1; 
     visibility:visible; 
     top:100%; 
     transform: rotateX(0deg);
-    background-color: #4575AC;
+    background-color: #4575ac;
 }
+
 .container-menu p{
     text-align: justify;
     margin: 25px;
     padding: 25px;
 }
 
-/* .navbar-toggler .navbar-toggler-icon{
-    background-color: transparent;
-} */
+.navbar-toggler-icon{
+    background-color: blue;
+}
 
 .container-main{
     background-color:#fafafa ;
-    height: auto;
+    height: 400px;
 }
+
+.container-main .bienvenido{
+    font-size: 90px;
+    text-align: center;
+    margin:50px auto;
+}
+
 .container-main_info{
     justify-content: center;
-    text-align: justify;
+    text-align: center;
     align-items: baseline;
     align-content: center;
     color:#005691;
     padding-top: 50px;
 }
 
-.container-main_info h1{
-    text-align: center;
+.container-main .form-turno{
+    width: 80%;
+   margin: auto;
+   display: flex;
+   
 }
 
-.container-main_p {
-    margin: 10px;
+.container-main .input{
+    width: 90%;
+    justify-content: center;
     padding: 10px;
 }
+
+.container-main .input> label{
+   width: 20%;
+   display: inline-block;
+}
+
+/* .container-main .input input[type="text"], select, input[type="date"]{
+    width:50%;
+	padding:3px 10px;
+	border:1px solid blue;
+	background-color:#f6f6f6;
+	margin: 20px;
+	display:inline-block;
+} */
+
+.container-main .form-turno input[type="submit"]{
+    margin:20px auto;
+    width: 15%;
+    padding: 5px;
+    background-color: #4575ac;
+    border: 1px solid blue;
+    color: white;
+    display: block;
+    align-items: center;
+}
+
+
 
 .container-carrousel {
     width: 200px;
 }
+
 .container-carrousel img{
     height: 400px;
 }
+
 .container-footer{
     color:#e8f1f5; 
-    background-color: #00234F;
+    background-color: #00234f;
     text-align: center;
     padding: 10px;
 }
+
 .container-footer .row p span a{
-    color: #E8F1F5;
+    color: #e8f1f5;
     font-size: small;
 }
