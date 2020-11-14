@@ -1,21 +1,23 @@
 export class TurnoGuardado {
     private dia: Date;
-    private horario: number;
+    private horario: string;
     private medico: string;
     private especialidad: string;
     
-    constructor (dia: Date, horario: number, medico: string, especialidad: string) {
+    constructor (dia: Date, horario: string, medico: string, especialidad: string) {
         this.dia = dia;
         this.horario = horario;
         this.medico = medico;
         this.especialidad = especialidad;
+        // agregar cobertura medica
+    
     }
 
     public getDia(): Date {
         return this.dia;
     }
 
-    public getHorario(): number {
+    public getHorario(): string {
         return this.horario;
     }
 

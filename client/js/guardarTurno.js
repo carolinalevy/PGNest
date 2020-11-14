@@ -9,6 +9,7 @@ async function saveTurno() {
         "horario": horario,
         "medico": medico,
         "especialidad": especialidad
+        //agregar cobertura medica
     }
 
     let response = await fetch("/guardar-turno", {
