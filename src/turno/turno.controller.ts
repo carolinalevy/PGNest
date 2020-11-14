@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Param } from '@nestjs/common';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Especialidad } from './Especialidad';
 import { Horario } from './Horario';
@@ -7,20 +7,20 @@ import { TurnoService } from './turno.service';
 
 @Controller('turno')
 export class TurnoController {
-    constructor(private turnoService : TurnoService){};
+    constructor(private turnoService: TurnoService) { };
 
     @Get()
-    public getListaDeHorarios(): Horario[]{
+    public getListaDeHorarios(): Horario[] {
         return this.turnoService.getListaHorarios();
     }
- 
-    @Get()
-    public getListaDeMedicos(): Medico[]{
-        return this.turnoService.getListaMedicos();
+
+    @Get('medico/:especialidad')
+    public getListaDeMedicos(@Param('especialidad') especialidad: string): Medico[] {
+        return this.turnoService.getListaMedicos(especialidad);
     }
 
     @Get('especialidades')
-    public getListaDeEspecialidades():Especialidad[]{
+    public getListaDeEspecialidades(): Especialidad[] {
         return this.turnoService.getListaEspecialidades();
     }
 

@@ -12,4 +12,8 @@ export class Medico{
    public getMedico(): string{
        return this.nombreMedico;
    }
+
+   public getEspecialidad():string{
+       return this.especialidad;
+   }
 }

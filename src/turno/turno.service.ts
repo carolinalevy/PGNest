@@ -10,27 +10,28 @@ export class TurnoService {
     private listaHorarios: Horario[];
     private listaEspecialidades: Especialidad[];
 
-    public getListaHorarios(): Horario[]{
-        let listaDeHorarios : Horario[] = this.loadHorario();
+    public getListaHorarios(): Horario[] {
+        let listaDeHorarios: Horario[] = this.loadHorario();
         return listaDeHorarios;
     }
 
-    public getListaMedicos(): Medico[]{
-        let listaDeMedicos : Medico[] = this.loadMedico();
-        return listaDeMedicos;
+    public getListaMedicos(especialidad: string): Medico[] {
+        let listaDeMedicos: Medico[] = this.loadMedico();
+        return listaDeMedicos.filter(medico => medico.getEspecialidad() === especialidad);
     }
 
-    public getListaEspecialidades(): Especialidad[]{
-        let listaDeEspecialidades : Especialidad[] = this.loadEspecialidad();
+    public getListaEspecialidades(): Especialidad[] {
+        let listaDeEspecialidades: Especialidad[] = this.loadEspecialidad();
         return listaDeEspecialidades;
     }
 
 
 
-    private loadMedico():Medico[] {
+    private loadMedico(): Medico[] {
         let archivo = fs.readFileSync('resources/medicos.csv', 'utf8');
         const elementos = archivo.split('\n')
             .map(p => p.replace('\r', '')).map(p => p.split(','));
+        console.log(elementos);
         this.listaMedicos = [];
         for (let i = 0; i < elementos.length; i++) {
             let medico = new Medico(elementos[i][0], elementos[i][1]);
@@ -39,11 +40,10 @@ export class TurnoService {
         return this.listaMedicos;
     }
 
-    private loadHorario():Horario[]{
+    private loadHorario(): Horario[] {
         let archivo = fs.readFileSync('resources/horarios.csv', 'utf8');
-        const elementos = archivo.split('\n')
-            .map(p => p.replace('\r', '')).map(p => p.split(','));
-       this.listaHorarios = [];
+        const elementos = archivo.split('\n');
+        this.listaHorarios = [];
         for (let i = 0; i < elementos.length; i++) {
             let horario = new Horario(elementos[i][0]);
             this.listaHorarios.push(horario);
