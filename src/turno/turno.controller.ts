@@ -9,7 +9,7 @@ import { TurnoService } from './turno.service';
 export class TurnoController {
     constructor(private turnoService: TurnoService) { };
 
-    @Get()
+    @Get('horario')
     public getListaDeHorarios(): Horario[] {
         return this.turnoService.getListaHorarios();
     }
