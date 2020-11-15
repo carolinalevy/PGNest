@@ -43,12 +43,13 @@ export class TurnoService {
     private loadHorario(): Horario[] {
         let archivo = fs.readFileSync('resources/horarios.csv', 'utf8');
         const elementos = archivo.split('\n');
-        this.listaHorarios = [];
+         const listaDeHorarios = [];
         for (let i = 0; i < elementos.length; i++) {
-            let horario = new Horario(elementos[i][0]);
-            this.listaHorarios.push(horario);
+            let horario = new Horario(elementos[i]);
+            listaDeHorarios.push(horario);
         }
-        return this.listaHorarios;
+        console.log(listaDeHorarios);
+        return listaDeHorarios;
     }
 
     private loadEspecialidad(): Especialidad[] {
