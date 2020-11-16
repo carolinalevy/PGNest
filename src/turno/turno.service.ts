@@ -31,7 +31,6 @@ export class TurnoService {
         let archivo = fs.readFileSync('resources/medicos.csv', 'utf8');
         const elementos = archivo.split('\n')
             .map(p => p.replace('\r', '')).map(p => p.split(','));
-        console.log(elementos);
         this.listaMedicos = [];
         for (let i = 0; i < elementos.length; i++) {
             let medico = new Medico(elementos[i][0], elementos[i][1]);
@@ -48,7 +47,6 @@ export class TurnoService {
             let horario = new Horario(elementos[i]);
             listaDeHorarios.push(horario);
         }
-        console.log(listaDeHorarios);
         return listaDeHorarios;
     }
 

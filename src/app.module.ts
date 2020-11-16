@@ -11,6 +11,8 @@ import { LoginController } from './login/login.controller';
 import { LoginService } from './login/login.service';
 import { GuardarTurnoController } from './guardar-turno/guardar-turno.controller';
 import { GuardarTurnoService } from './guardar-turno/guardar-turno.service';
+import { ObtenerDatosService } from './obtener-datos/obtener-datos.service';
+import { ObtenerDatosController } from './obtener-datos/obtener-datos.controller';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { GuardarTurnoService } from './guardar-turno/guardar-turno.service';
         'client'),
     }),
   ],
-  controllers: [AppController, LoginController, RegistrarseController, TurnoController, GuardarTurnoController],
-  providers: [AppService, LoginService, RegistrarseService, TurnoService, GuardarTurnoService],
+  controllers: [AppController, LoginController, RegistrarseController, TurnoController, GuardarTurnoController, ObtenerDatosController],
+  providers: [AppService, LoginService, RegistrarseService, TurnoService, GuardarTurnoService, ObtenerDatosService],
 })
 export class AppModule { }

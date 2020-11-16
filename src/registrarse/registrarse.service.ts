@@ -5,6 +5,7 @@ import { Registro } from './Registro';
 
 @Injectable()
 export class RegistrarseService {
+    
     private listaRegistro: Registro[];
 
     // private loadInfo(): void {
@@ -26,7 +27,6 @@ export class RegistrarseService {
         if (nuevoRegistro.getDni() && nuevoRegistro.getEmail() && nuevoRegistro.getPassword() && nuevoRegistro.getNombre()
             && nuevoRegistro.getApellido() && nuevoRegistro.getDireccion() && nuevoRegistro.getCelular() && nuevoRegistro.getCobertura()) {
             // this.listaRegistro.push(nuevoRegistro);
-            console.log(nuevoRegistro);
             fs.appendFileSync('resources/registro.csv',
                 "\n" +
                 nuevoRegistro.getDni() + ","

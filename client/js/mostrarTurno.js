@@ -10,7 +10,6 @@ function displayTurno() {
     horario.innerHTML = turno.horario;
     cobertura.innerHTML = turno.cobertura;
 
-   // window.sessionStorage.removeItem('turnoNuevo');
 }
 
 

@@ -18,15 +18,21 @@ async function saveInfo() {
         "celular": telefono,
         "cobertura": cobertura
     }
+
+    let stringDatos = JSON.stringify(nuevoRegistro);
+
     let response = await fetch("/registrarse", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(nuevoRegistro)
+        body: stringDatos
     }
     );
     if (response.ok) {
+        window.sessionStorage.setItem('userLogged', true);
+        window.sessionStorage.setItem('user', stringDatos.nombre);
+        window.sessionStorage.setItem('datosNuevos', stringDatos);
         window.location.href= "http://localhost:3000/pagina1.html";
     }
 }
