@@ -9,8 +9,7 @@ export class LoginService {
         let userLogged = new Registro(0, "", userInfo.password, userInfo.nombre, "", "", 0, "");
         let users = this.getUsers();
         for (const user of users) {
-            console.log(user.getNombre());
-            console.log(user.getPassword());
+           
             if(user.getNombre() == userLogged.getNombre() && user.getPassword() == userLogged.getPassword()){
             
                 return true;

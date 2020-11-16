@@ -4,10 +4,17 @@
     display: flexbox;
     padding: 30px;
 }
+
 .container-header header img{
     width: auto;
-    height: 50px;
+    height: 100px;
 }
+
+.container-header header h1{
+    font-family: 'PT Sans', Verdana, sans-serif;
+    font-weight: bolder;
+}
+
 ul {
     list-style: none;
 }
