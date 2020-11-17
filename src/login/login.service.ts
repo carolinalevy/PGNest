@@ -6,11 +6,11 @@ import * as fs from 'fs';
 @Injectable()
 export class LoginService {
     public login(userInfo: any): boolean {
-        let userLogged = new Registro(0, "", userInfo.password, userInfo.nombre, "", "", 0, "");
+        let userLogged = new Registro(0, userInfo.email, userInfo.password, "", "", "", 0, "");
         let users = this.getUsers();
         for (const user of users) {
            
-            if(user.getNombre() == userLogged.getNombre() && user.getPassword() == userLogged.getPassword()){
+            if(user.getEmail() == userLogged.getEmail() && user.getPassword() == userLogged.getPassword()){
             
                 return true;
             }  

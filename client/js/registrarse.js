@@ -31,7 +31,7 @@ async function saveInfo() {
     );
     if (response.ok) {
         window.sessionStorage.setItem('userLogged', true);
-        window.sessionStorage.setItem('user', stringDatos.nombre);
+        window.sessionStorage.setItem('user', stringDatos.email);
         window.sessionStorage.setItem('datosNuevos', stringDatos);
         window.location.href= "http://localhost:3000/pagina1.html";
     }
