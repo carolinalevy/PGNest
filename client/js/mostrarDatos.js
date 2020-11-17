@@ -1,7 +1,7 @@
 
- function displayDatos() {
+ async function displayDatos() {
     let usuario = window.sessionStorage.getItem('user');
-    let respuesta = fetch('/obtener-datos/' + usuario)
+    let respuesta = await fetch('/obtener-datos/' + usuario)
     console.log(respuesta);
 
     let nombre = document.getElementById('inputNombre');

@@ -18,6 +18,14 @@ export class ObtenerDatosService {
         }
         return null;
     }
+
+    // public modificarDatosUsuario(): Registro {
+    //     let datos = fs.read('resources/registro.csv', 'utf8');
+    //     let personas = datos.split("\n")
+    //         .map(p => p.replace('\r', '')).map(p => p.split(','));
+        
+
+    // }
     
 
 }
