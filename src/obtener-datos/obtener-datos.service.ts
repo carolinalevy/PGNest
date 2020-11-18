@@ -11,7 +11,7 @@ export class ObtenerDatosService {
                 .map(p => p.replace('\r', '')).map(p => p.split(','));
 
         for (let i =0; i< personas.length; i++) {
-            if (nombre == personas[i][3]) {
+            if (nombre == personas[i][1]) {
                 let datosUsuario = new Registro (parseInt(personas[i][0]), personas[i][1], personas[i][2], personas[i][3], personas[i][4], personas[i][5], parseInt(personas[i][6]), personas[i][7]);
                 return datosUsuario;
             }
