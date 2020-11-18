@@ -1,7 +1,7 @@
-.container-header{
-    background-color: #004A7C;
+.container-header{    
+    background-color: #00234F;
     color: #4575AC;
-    display: flexbox;
+    display: flex;
     padding: 30px;
 }
 
