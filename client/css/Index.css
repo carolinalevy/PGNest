@@ -66,7 +66,7 @@ ul {
 }
 .container-main_info{
     justify-content: center;
-    text-align: justify;
+    text-align: center;
     align-items: baseline;
     align-content: center;
     color:#005691;
@@ -78,7 +78,8 @@ ul {
 }
 
 .container-main_p {
-    margin: 10px;
+    width: 80%;
+    margin: 10px auto;
     padding: 10px;
 }
 
