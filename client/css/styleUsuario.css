@@ -96,6 +96,10 @@ ul {
    
 }
 
+.container-main_info .display{
+    display: none;
+}
+
 .container-main .input{
     width: 90%;
     justify-content: center;

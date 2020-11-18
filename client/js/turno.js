@@ -29,6 +29,7 @@ async function loadListMedico(especialidad) {
             console.log(response);
             let t = await response.json();
             listaMedico = t;
+            container.style.display= 'block';
             container.innerHTML = mostrarTablaMedico();
         } else {
             container.innerHTML = "Error al cargar";
@@ -67,6 +68,7 @@ function mostrarTablaEspecialidad() {
 
 
 function mostrarTablaMedico() {
+    
     let especialidad = document.getElementById('inputEspecialidad').value;
     console.log(especialidad);
     console.log(listaMedico);
@@ -78,7 +80,6 @@ function mostrarTablaMedico() {
 }
 
 function mostrarTablaHorario() {
-    
     html = '<option selected>Elegir horario...</option> ';
     for (let i = 0; i < listaHorario.length; i++) {
         html += `<option value="${listaHorario[i].horario}">${listaHorario[i].horario}</option> `
