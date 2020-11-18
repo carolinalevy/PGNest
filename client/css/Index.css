@@ -1,7 +1,8 @@
-.container-header{
-    background-color: #004A7C;
-    color: #4575AC;
-    display: flexbox;
+.container-header{    
+    background-image: url('../Imagenes/medical-563427_1280.jpg');
+    background-position: center;
+    color: rgb(76, 174, 206);
+    display: flex;
     padding: 30px;
 }
 
@@ -11,8 +12,9 @@
 }
 
 .container-header header h1{
-    font-family: 'PT Sans', Verdana, sans-serif;
+    font-family: 'Homemade Apple', cursive;;
     font-weight: bolder;
+
 }
 
 ul {
@@ -99,3 +101,9 @@ ul {
     color: #E8F1F5;
     font-size: small;
 }
+
+@media (max-width: 500px) {
+    .container-carrousel {
+      display: none;
+    }
+  }

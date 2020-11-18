@@ -1,5 +1,6 @@
 .container-header{
-    background-color: #004a7c;
+    background-image: url('../Imagenes/medical-563427_1280.jpg');
+    background-position: center;
     color: #4575ac;
     display: flexbox;
     padding: 30px;
