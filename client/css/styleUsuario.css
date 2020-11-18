@@ -27,6 +27,10 @@ ul {
     background-color: #4575ac;
 }
 
+#welcomeName {
+    font-weight: bolder;
+}
+
 .navbar .nav-item .dropdown-menu{  
     display:block; 
     opacity: 0;  
