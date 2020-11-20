@@ -12,3 +12,5 @@ export class ObtenerDatosController {
         return this.obtenerDatosService.getDatosUsuarioRegistrado(usuario);
     }
 }
+
+// utilizar el mismo controller y servicio para usar los datos del usuario. Cargar y listar.
