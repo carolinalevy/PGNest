@@ -8,6 +8,8 @@ async function saveInfo() {
     let telefono = document.querySelector("#inputPhone").value;
     let cobertura = document.querySelector("#inputObraSocial").value;
 
+    // aca se validan todos los datos con un if
+
     let nuevoRegistro = {
         "dni": dni,
         "email": email,
