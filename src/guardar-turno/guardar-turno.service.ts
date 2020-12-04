@@ -30,11 +30,10 @@ export class GuardarTurnoService {
 
         let index = -1;
         let archivoHorarios = fs.readFileSync('resources/horarios.csv', 'utf8');
-        let horarios = archivoHorarios.split('\n');
+    
+        let horarios = archivoHorarios.replace(/\r/g, "").split('\n');
         for (let i=0; i< horarios.length; i++ ) {
-       
             if (horario== horarios[i]) {
-                
                 index = i;
             }
         }
@@ -43,7 +42,6 @@ export class GuardarTurnoService {
         if (index > -1) {
             removed = horarios.splice(index, 1);
         }
-     
         fs.writeFileSync('resources/horarios.csv', horarios.join('\n'));
         return removed.length == 1;
     }
