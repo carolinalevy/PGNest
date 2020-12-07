@@ -11,8 +11,8 @@ import { LoginController } from './login/login.controller';
 import { LoginService } from './login/login.service';
 import { GuardarTurnoController } from './guardar-turno/guardar-turno.controller';
 import { GuardarTurnoService } from './guardar-turno/guardar-turno.service';
-import { ObtenerDatosService } from './obtener-datos/obtener-datos.service';
-import { ObtenerDatosController } from './obtener-datos/obtener-datos.controller';
+import { TurnoModule } from './turno/turno.module';
+import { TypeOrmModule } from '@nestjs/typeorm/dist';
 
 @Module({
   imports: [
@@ -20,8 +20,10 @@ import { ObtenerDatosController } from './obtener-datos/obtener-datos.controller
       rootPath: join(__dirname, '..',
         'client'),
     }),
+    TypeOrmModule.forRoot(),
+    TurnoModule,
   ],
-  controllers: [AppController, LoginController, RegistrarseController, TurnoController, GuardarTurnoController, ObtenerDatosController],
-  providers: [AppService, LoginService, RegistrarseService, TurnoService, GuardarTurnoService, ObtenerDatosService],
+  controllers: [AppController, LoginController, RegistrarseController, GuardarTurnoController],
+  providers: [AppService, LoginService, RegistrarseService, GuardarTurnoService],
 })
 export class AppModule { }

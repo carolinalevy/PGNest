@@ -1,8 +1,8 @@
 import { Controller, Param } from '@nestjs/common';
 import { Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
-import { Especialidad } from './Especialidad';
-import { Horario } from './Horario';
-import { Medico } from './Medico';
+import { Especialidad } from './Especialidad.entity';
+import { Horario } from './Horario.entity';
+import { Medico } from './Medico.entity';
 import { TurnoService } from './turno.service';
 
 @Controller('turno')
@@ -10,17 +10,17 @@ export class TurnoController {
     constructor(private turnoService: TurnoService) { };
 
     @Get('horario')
-    public getListaDeHorarios(): Horario[] {
+    public getListaDeHorarios(): Promise<Horario[]> {
         return this.turnoService.getListaHorarios();
     }
 
     @Get('medico/:especialidad')
-    public getListaDeMedicos(@Param('especialidad') especialidad: string): Medico[] {
+    public getListaDeMedicos(@Param('especialidad') especialidad: string): Promise<Medico[]> {
         return this.turnoService.getListaMedicos(especialidad);
     }
 
     @Get('especialidades')
-    public getListaDeEspecialidades(): Especialidad[] {
+    public getListaDeEspecialidades(): Promise<Especialidad[]> {
         return this.turnoService.getListaEspecialidades();
     }
 

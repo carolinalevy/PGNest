@@ -6,7 +6,7 @@ let listaHorario = [];
 async function loadListEspecialidad() {
     let container = document.getElementById('inputEspecialidad');
     try {
-        let response = await fetch("/turno/especialidades");
+        let response = await fetch("/turno/especialidades.entity");
         if (response.ok) {
             console.log(response);
             let t = await response.json();
@@ -43,7 +43,7 @@ async function loadListMedico(especialidad) {
 async function loadListHorario() {
     let container = document.getElementById('inputHorario');
     try {
-        let response = await fetch("/turno/horario");
+        let response = await fetch("/turno/horario.entity");
         if (response.ok) {
             console.log(response);
             let t = await response.json();

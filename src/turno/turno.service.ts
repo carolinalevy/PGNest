@@ -1,63 +1,59 @@
 import { Injectable } from '@nestjs/common';
-import { Especialidad } from './Especialidad';
-import { Horario } from './Horario';
-import { Medico } from './Medico';
+import { Especialidad } from './Especialidad.entity';
+import { Horario } from './Horario.entity';
+import { Medico } from './Medico.entity';
 import * as fs from 'fs';
+import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TurnoService {
+    constructor(
+        @InjectRepository(Medico)
+        private readonly medicoRepository: Repository<Medico>,
+        @InjectRepository(Horario)
+        private readonly horarioRepository: Repository<Horario>,
+        @InjectRepository(Especialidad)
+        private readonly especialidadRepository: Repository<Especialidad>
+        
+    ) { }
     private listaMedicos: Medico[];
     private listaHorarios: Horario[];
     private listaEspecialidades: Especialidad[];
 
-    public getListaHorarios(): Horario[] {
-        let listaDeHorarios: Horario[] = this.loadHorario();
-        return listaDeHorarios;
+    public async getListaHorarios(): Promise<Horario[]> {
+        let listaDeHorarios: Promise<Horario[]> = this.loadHorario();
+        return await listaDeHorarios;
     }
 
-    public getListaMedicos(especialidad: string): Medico[] {
-        let listaDeMedicos: Medico[] = this.loadMedico();
-        return listaDeMedicos.filter(medico => medico.getEspecialidad() === especialidad);
+     public async getListaMedicos(especialidad: string): Promise<Medico[]> {
+        let listaDeMedicos: Promise<Medico[]> = this.loadMedico();
+        return (await listaDeMedicos).filter(medico => medico.getEspecialidad() == especialidad);
     }
 
-    public getListaEspecialidades(): Especialidad[] {
-        let listaDeEspecialidades: Especialidad[] = this.loadEspecialidad();
-        return listaDeEspecialidades;
+    public async getListaEspecialidades(): Promise<Especialidad[]> {
+        let listaDeEspecialidades: Promise<Especialidad[]> = this.loadEspecialidad();
+        return await listaDeEspecialidades;
     }
 
 
 
-    private loadMedico(): Medico[] {
-        let archivo = fs.readFileSync('resources/medicos.csv', 'utf8');
-        const elementos = archivo.split('\n')
-            .map(p => p.replace('\r', '')).map(p => p.split(','));
-        this.listaMedicos = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let medico = new Medico(elementos[i][0], elementos[i][1]);
-            this.listaMedicos.push(medico);
-        }
-        return this.listaMedicos;
+    private async loadMedico(): Promise<Medico[]> {
+        const medicos: Medico[] = await this.medicoRepository.find(
+            { relations: ["Especialidad_nombreEspecialidades"] }
+        );
+        return medicos;
     }
 
-    private loadHorario(): Horario[] {
-        let archivo = fs.readFileSync('resources/horarios.csv', 'utf8');
-        const elementos = archivo.split('\n');
-         const listaDeHorarios = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let horario = new Horario(elementos[i]);
-            listaDeHorarios.push(horario);
-        }
-        return listaDeHorarios;
+    private async loadHorario(): Promise<Horario[]> {
+        const horarios = await this.horarioRepository.find();
+        return horarios;
     }
 
-    private loadEspecialidad(): Especialidad[] {
-        let archivo = fs.readFileSync('resources/especialidad.csv', 'utf8');
-        const elementos = archivo.split('\n');
-        let listaEspecialidades = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let especialidad = new Especialidad(elementos[i]);
-            listaEspecialidades.push(especialidad);
-        }
-        return listaEspecialidades;
+    private async loadEspecialidad(): Promise<Especialidad[]> {
+        const especialidades: Especialidad[] =await this.especialidadRepository.find(
+            { relations: ["medico_especialidad"] }
+        );
+        return especialidades;
     }
 }  

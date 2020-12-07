@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TurnoGuardado } from './TurnoGuardado';
 import * as fs from 'fs';
-import { Horario } from 'src/turno/Horario';
+import { Horario } from 'src/turno/Horario.entity';
 
 @Injectable()
 export class GuardarTurnoService {
