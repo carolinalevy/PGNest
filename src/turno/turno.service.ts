@@ -1,63 +1,74 @@
 import { Injectable } from '@nestjs/common';
-import { Especialidad } from './Especialidad';
-import { Horario } from './Horario';
-import { Medico } from './Medico';
+import { Especialidad } from './Especialidad.entity';
+import { Horario } from './Horario.entity';
+import { Medico } from './Medico.entity';
 import * as fs from 'fs';
+import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
+import { Repository } from 'typeorm';
+import { Equal } from 'typeorm/find-options/operator/Equal';
+import { HttpException } from '@nestjs/common/exceptions/http.exception';
+import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 
 @Injectable()
 export class TurnoService {
+    constructor(
+        @InjectRepository(Medico)
+        private readonly medicoRepository: Repository<Medico>,
+        @InjectRepository(Horario)
+        private readonly horarioRepository: Repository<Horario>,
+        @InjectRepository(Especialidad)
+        private readonly especialidadRepository: Repository<Especialidad>
+
+    ) { }
     private listaMedicos: Medico[];
     private listaHorarios: Horario[];
     private listaEspecialidades: Especialidad[];
 
-    public getListaHorarios(): Horario[] {
-        let listaDeHorarios: Horario[] = this.loadHorario();
-        return listaDeHorarios;
+    public async getListaHorarios(): Promise<Horario[]> {
+        let listaDeHorarios: Promise<Horario[]> = this.loadHorario();
+        return await listaDeHorarios;
     }
 
-    public getListaMedicos(especialidad: string): Medico[] {
-        let listaDeMedicos: Medico[] = this.loadMedico();
-        return listaDeMedicos.filter(medico => medico.getEspecialidad() === especialidad);
-    }
-
-    public getListaEspecialidades(): Especialidad[] {
-        let listaDeEspecialidades: Especialidad[] = this.loadEspecialidad();
-        return listaDeEspecialidades;
-    }
-
-
-
-    private loadMedico(): Medico[] {
-        let archivo = fs.readFileSync('resources/medicos.csv', 'utf8');
-        const elementos = archivo.split('\n')
-            .map(p => p.replace('\r', '')).map(p => p.split(','));
-        this.listaMedicos = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let medico = new Medico(elementos[i][0], elementos[i][1]);
-            this.listaMedicos.push(medico);
+    public async getListaMedicos(especialidad: string): Promise<Medico[]> {
+        try {
+            let response: Medico[] = await this.medicoRepository.find({
+                where: [{
+                    "especialidades_nombreEspecialidad": Equal(especialidad)
+                }]
+            });
+            return response;
         }
-        return this.listaMedicos;
+        catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request" + error,
+            }, HttpStatus.NOT_FOUND);
+        }
     }
 
-    private loadHorario(): Horario[] {
-        let archivo = fs.readFileSync('resources/horarios.csv', 'utf8');
-        const elementos = archivo.split('\n');
-         const listaDeHorarios = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let horario = new Horario(elementos[i]);
-            listaDeHorarios.push(horario);
-        }
-        return listaDeHorarios;
+    public async getListaEspecialidades(): Promise<Especialidad[]> {
+        const result = await this.especialidadRepository.query("select * from especialidades");
+
+        let especialidades: Especialidad[] = [];
+        result.forEach(element => {
+            let e: Especialidad = new Especialidad(element['nombreEspecialidad']);
+            especialidades.push(e);
+        });
+        return especialidades;
+     }
+
+
+    private async loadHorario(): Promise<Horario[]> {
+        const result = await this.horarioRepository.query("select * from horario");
+
+        let horarios: Horario[] = [];
+        result.forEach(element => {
+            let h: Horario = new Horario(element['turno_Id'],
+                                            element['turno']);
+            horarios.push(h);
+        });
+        return horarios;
     }
 
-    private loadEspecialidad(): Especialidad[] {
-        let archivo = fs.readFileSync('resources/especialidad.csv', 'utf8');
-        const elementos = archivo.split('\n');
-        let listaEspecialidades = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let especialidad = new Especialidad(elementos[i]);
-            listaEspecialidades.push(especialidad);
-        }
-        return listaEspecialidades;
-    }
+  
 }  

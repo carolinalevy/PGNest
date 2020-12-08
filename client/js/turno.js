@@ -74,7 +74,7 @@ function mostrarTablaMedico() {
     console.log(listaMedico);
     let html = "";
     for (let i = 0; i < listaMedico.length; i++) {
-        html += `<option value="${listaMedico[i].nombreMedico}">${listaMedico[i].nombreMedico}</option>`
+        html += `<option value="${listaMedico[i].idMedicos}">${listaMedico[i].nombre + " " +listaMedico[i].apellido}</option>`
     }
     return html;
 }
@@ -82,7 +82,7 @@ function mostrarTablaMedico() {
 function mostrarTablaHorario() {
     html = '<option selected>Elegir horario...</option> ';
     for (let i = 0; i < listaHorario.length; i++) {
-        html += `<option value="${listaHorario[i].horario}">${listaHorario[i].horario}</option> `
+        html += `<option value="${listaHorario[i].turno_Id}">${listaHorario[i].turno}</option> `
     }
     return html;
 }
