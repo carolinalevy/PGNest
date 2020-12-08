@@ -1,11 +1,29 @@
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity('Pacientes')
 export class Registro{
+    @PrimaryGeneratedColumn()
     private dni:number;
+
+    @Column()
     private email:string;
+
+    @Column()
     private password:string;
+
+    @Column()
     private nombre:string;
+
+    @Column()
     private apellido:string;
+
+    @Column()
     private direccion:string;
+
+    @Column()
     private celular:number;
+
+    @Column()
     private cobertura:string;
 
     constructor(dni:number, email:string, password:string, nombre:string,

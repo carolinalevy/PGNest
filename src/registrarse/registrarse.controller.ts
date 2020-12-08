@@ -3,7 +3,7 @@ import { Post } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body, Param } from '@nestjs/common/decorators/http/route-params.decorator';
 import { get } from 'http';
 import { RegistrarseService } from './registrarse.service';
-import { Registro } from './Registro';
+import { Registro } from './Registro.entity';
 
 @Controller('registrarse')
 export class RegistrarseController {
@@ -11,7 +11,7 @@ export class RegistrarseController {
     constructor(private registrarseService: RegistrarseService){};
 
     @Post()
-    create(@Body() registro: any): string {
+    create(@Body() registro: any): Promise <Registro>{
         return this.registrarseService.create(registro);
     }
 
