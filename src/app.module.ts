@@ -13,15 +13,20 @@ import { GuardarTurnoController } from './guardar-turno/guardar-turno.controller
 import { GuardarTurnoService } from './guardar-turno/guardar-turno.service';
 import { TurnoModule } from './turno/turno.module';
 import { TypeOrmModule } from '@nestjs/typeorm/dist';
+import { TurnoGuardado } from './guardar-turno/TurnoGuardado';
+import { LoginModule } from './login/login.module';
+import { RegistrarseModule } from './registrarse/registrarse.module';
 
 @Module({
+
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..',
-        'client'),
+      rootPath: join(__dirname, '..', 'client'),
     }),
     TypeOrmModule.forRoot(),
     TurnoModule,
+    LoginModule,
+    RegistrarseModule,
   ],
   controllers: [AppController, LoginController, RegistrarseController, GuardarTurnoController],
   providers: [AppService, LoginService, RegistrarseService, GuardarTurnoService],

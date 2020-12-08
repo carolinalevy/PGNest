@@ -1,16 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { Registro } from '../registrarse/Registro';
+import { Registro } from '../registrarse/Registro.entity';
 import * as fs from 'fs';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Usuario } from './usuario.entity';
 
 
 @Injectable()
 export class LoginService {
-    public login(userInfo: any): boolean {
+
+    constructor(
+        @InjectRepository(Usuario) private readonly usuarioRepository: Repository<Usuario>
+        ) {}
+
+    public async login(userInfo: any): Promise <boolean> {
         let userLogged = new Registro(0, userInfo.email, userInfo.password, "", "", "", 0, "");
         let users = this.getUsers();
-        for (const user of users) {
+        for (const user of await users) {
            
-            if(user.getEmail() == userLogged.getEmail() && user.getPassword() == userLogged.getPassword()){
+            if(user.getEmail() == userLogged.getEmail() && user.getContraseña() == userLogged.getPassword()){
             
                 return true;
             }  
@@ -18,16 +26,25 @@ export class LoginService {
         return false;
     }
 
-    private getUsers(): Registro[]{
-        let archivo = fs.readFileSync('resources/registro.csv', 'utf8');
-        const elementos = archivo.split('\n')
-            .map(p => p.replace('\r', '')).map(p => p.split(','));
-        let listaUsers : Registro[] = [];
-        for (let i = 0; i < elementos.length; i++) {
-            let user = new Registro(Number(elementos[i][0]),elementos[i][1],elementos[i][2],elementos[i][3], elementos[i][4], elementos[i][5], Number(elementos[i][6]), elementos[i][7]);
-            listaUsers.push(user);
-        }
-        return listaUsers;
+    private async getUsers(): Promise <Usuario[]>{
+        const allUsers = await this.usuarioRepository.find();
+        return allUsers;
     }
+
+    
+    // public async login2(userInfo: any): Promise<boolean> {
+    //     let userLogged = new Registro(0, userInfo.email, userInfo.password, "", "", "", 0, "");
+    //     let userMail = this.getUser(userLogged.getEmail());
+    //     let userPassword = this.getUser(userLogged.getPassword());
+    //     if(userMail == userLogged[1] && userPassword == userLogged[2]) {          
+    //         return true;
+    //     } 
+    //     return false;
+    // }
+
+    // private async getUser(email: string): Promise <Usuario> {
+    //     const user = await this.usuarioRepository.findOne(email);
+    //     return user;
+    // }
 
 }
