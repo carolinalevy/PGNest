@@ -1,5 +1,7 @@
 import { Entity, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
 import { JoinColumn } from "typeorm/decorator/relations/JoinColumn";
+import { OneToMany } from "typeorm/decorator/relations/OneToMany";
+import { Medico } from "./Medico.entity";
 
 @Entity('especialidades')
 export class Especialidad {
@@ -7,8 +9,10 @@ export class Especialidad {
     @PrimaryColumn()
     private nombreEspecialidad: string;
 
-    @ManyToOne((type) => Especialidad, especialidades => especialidades.medicos)
-    public especialidades: Especialidad[];
+    @OneToMany((type) => Medico, medicos => medicos.especialidad)
+    public medicos : Medico[];
+    // @ManyToOne((type) => Especialidad, especialidades => especialidades.medicos)
+    // public especialidades: Especialidad[];
 
     constructor(nombreEspecialidad: string) {
         this.nombreEspecialidad = nombreEspecialidad;

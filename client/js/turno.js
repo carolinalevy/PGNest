@@ -6,7 +6,7 @@ let listaHorario = [];
 async function loadListEspecialidad() {
     let container = document.getElementById('inputEspecialidad');
     try {
-        let response = await fetch("/turno/especialidades.entity");
+        let response = await fetch("/turno/especialidades");
         if (response.ok) {
             console.log(response);
             let t = await response.json();
@@ -43,7 +43,7 @@ async function loadListMedico(especialidad) {
 async function loadListHorario() {
     let container = document.getElementById('inputHorario');
     try {
-        let response = await fetch("/turno/horario.entity");
+        let response = await fetch("/turno/horario");
         if (response.ok) {
             console.log(response);
             let t = await response.json();
@@ -74,7 +74,7 @@ function mostrarTablaMedico() {
     console.log(listaMedico);
     let html = "";
     for (let i = 0; i < listaMedico.length; i++) {
-        html += `<option value="${listaMedico[i].nombreMedico}">${listaMedico[i].nombreMedico}</option>`
+        html += `<option value="${listaMedico[i].idMedicos}">${listaMedico[i].nombre + " " +listaMedico[i].apellido}</option>`
     }
     return html;
 }
@@ -82,7 +82,7 @@ function mostrarTablaMedico() {
 function mostrarTablaHorario() {
     html = '<option selected>Elegir horario...</option> ';
     for (let i = 0; i < listaHorario.length; i++) {
-        html += `<option value="${listaHorario[i].horario}">${listaHorario[i].horario}</option> `
+        html += `<option value="${listaHorario[i].turno_Id}">${listaHorario[i].turno}</option> `
     }
     return html;
 }

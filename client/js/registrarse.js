@@ -16,6 +16,7 @@ async function validar(e) {
     }
 
     if (dni == "" || dni == null) {
+        document.getElementById('inputEmail').style.borderColor = "black";
         document.getElementById('inputDNI').style.borderColor = "#ff0000";
         check = true;
     }

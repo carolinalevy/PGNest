@@ -20,8 +20,11 @@ export class Medico{
     @Column()
     private especialidades_nombreEspecialidad: string;
 
-    @OneToMany((type) => Medico, medicos => medicos.especialidades)
-    public medicos : Medico;
+    @ManyToOne((type) => Especialidad, especialidad => especialidad.medicos)
+    @JoinColumn({name: 'idMedicos'})
+    public especialidad : Especialidad;
+    // @OneToMany((type) => Medico, medicos => medicos.especialidades)
+    // public medicos : Medico;
 
    constructor (nombre: string, apellido: string, especialidad_nombreEspecialidad:string){
        this.nombre = nombre;

@@ -5,6 +5,9 @@ import { Medico } from './Medico.entity';
 import * as fs from 'fs';
 import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
 import { Repository } from 'typeorm';
+import { Equal } from 'typeorm/find-options/operator/Equal';
+import { HttpException } from '@nestjs/common/exceptions/http.exception';
+import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 
 @Injectable()
 export class TurnoService {
@@ -15,7 +18,7 @@ export class TurnoService {
         private readonly horarioRepository: Repository<Horario>,
         @InjectRepository(Especialidad)
         private readonly especialidadRepository: Repository<Especialidad>
-        
+
     ) { }
     private listaMedicos: Medico[];
     private listaHorarios: Horario[];
@@ -26,34 +29,46 @@ export class TurnoService {
         return await listaDeHorarios;
     }
 
-     public async getListaMedicos(especialidad: string): Promise<Medico[]> {
-        let listaDeMedicos: Promise<Medico[]> = this.loadMedico();
-        return (await listaDeMedicos).filter(medico => medico.getEspecialidad() == especialidad);
+    public async getListaMedicos(especialidad: string): Promise<Medico[]> {
+        try {
+            let response: Medico[] = await this.medicoRepository.find({
+                where: [{
+                    "especialidades_nombreEspecialidad": Equal(especialidad)
+                }]
+            });
+            return response;
+        }
+        catch (error) {
+            throw new HttpException({
+                status: HttpStatus.NOT_FOUND,
+                error: "there is an error in the request" + error,
+            }, HttpStatus.NOT_FOUND);
+        }
     }
 
     public async getListaEspecialidades(): Promise<Especialidad[]> {
-        let listaDeEspecialidades: Promise<Especialidad[]> = this.loadEspecialidad();
-        return await listaDeEspecialidades;
-    }
+        const result = await this.especialidadRepository.query("select * from especialidades");
 
+        let especialidades: Especialidad[] = [];
+        result.forEach(element => {
+            let e: Especialidad = new Especialidad(element['nombreEspecialidad']);
+            especialidades.push(e);
+        });
+        return especialidades;
+     }
 
-
-    private async loadMedico(): Promise<Medico[]> {
-        const medicos: Medico[] = await this.medicoRepository.find(
-            { relations: ["Especialidad_nombreEspecialidades"] }
-        );
-        return medicos;
-    }
 
     private async loadHorario(): Promise<Horario[]> {
-        const horarios = await this.horarioRepository.find();
+        const result = await this.horarioRepository.query("select * from horario");
+
+        let horarios: Horario[] = [];
+        result.forEach(element => {
+            let h: Horario = new Horario(element['turno_Id'],
+                                            element['turno']);
+            horarios.push(h);
+        });
         return horarios;
     }
 
-    private async loadEspecialidad(): Promise<Especialidad[]> {
-        const especialidades: Especialidad[] =await this.especialidadRepository.find(
-            { relations: ["medico_especialidad"] }
-        );
-        return especialidades;
-    }
+  
 }  
