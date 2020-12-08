@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { userInfo } from 'os';
 import { Registro } from 'src/registrarse/Registro.entity';
 import { LoginService } from './login.service';
 

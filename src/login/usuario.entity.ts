@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity ('usuario')
 export class Usuario{
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     private email: string;
 
     @Column()
@@ -11,13 +11,17 @@ export class Usuario{
     @Column()
     private pacientes_DNI: number;
 
-    public constructor ( contraseña: string, pacientes_DNI: number) {
+    public constructor (email:string, contraseña: string) {
+        this.email = email;
         this.contraseña = contraseña;
-        this.pacientes_DNI = pacientes_DNI;
     }
 
     public getEmail(): string{
         return this.email;
+    }
+
+    public setEmail(email:string){
+        this.email = email;
     }
 
     public getContraseña(): string{

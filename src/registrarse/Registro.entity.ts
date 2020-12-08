@@ -1,15 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('Pacientes')
 export class Registro{
-    @PrimaryGeneratedColumn()
-    private dni:number;
+    @PrimaryColumn()
+    private DNI:number;
 
     @Column()
     private email:string;
-
-    @Column()
-    private password:string;
 
     @Column()
     private nombre:string;
@@ -18,32 +15,23 @@ export class Registro{
     private apellido:string;
 
     @Column()
-    private direccion:string;
-
-    @Column()
-    private celular:number;
+    private telefono:number;
 
     @Column()
     private cobertura:string;
 
-    constructor(dni:number, email:string, password:string, nombre:string,
-        apellido:string, direccion:string, celular:number, cobertura:string){
-            this.dni= dni;
+    constructor(DNI:number, email:string, nombre:string,
+        apellido:string, telefono:number, cobertura:string){
+            this.DNI= DNI;
             this.email=email;
-            this.password=password;
             this.nombre=nombre;
             this.apellido=apellido;
-            this.direccion=direccion;
-            this.celular=celular;
+            this.telefono = telefono;
             this.cobertura=cobertura;
         }  
 
     public getEmail():string{
         return this.email;
-    }
-
-    public getPassword():string{
-        return this.password;
     }
 
     public getNombre():string{
@@ -55,15 +43,11 @@ export class Registro{
     }
 
     public getDni():number{
-        return this.dni;
+        return this.DNI;
     }
 
     public getCelular():number{
-        return this.celular;
-    }
-
-    public getDireccion():string{
-        return this.direccion;
+        return this.telefono;
     }
 
     public getCobertura():string{
