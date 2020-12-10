@@ -1,37 +1,44 @@
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity('consulta')
 export class TurnoGuardado {
-    private dia: Date;
-    private horario: string;
-    private medico: string;
-    private especialidad: string;
-    private cobertura: string;
+
+    @PrimaryGeneratedColumn()
+    private idConsulta: number;
+
+    @Column()
+    private fecha: Date;
+
+    @Column()
+    private pacientes_DNI: number;
+
+    @Column()
+    private Medicos_idMedicos: number;
+
+    @Column()
+    private Horario_turno_id: number;
     
-    constructor (dia: Date, horario: string, medico: string, especialidad: string, cobertura: string) {
-        this.dia = dia;
-        this.horario = horario;
-        this.medico = medico;
-        this.especialidad = especialidad;
-        this.cobertura = cobertura;
-    
+    constructor (fecha: Date, pacientes_DNI: number, Medicos_idMedicos: number, Horario_turno_id: number) {
+        this.fecha = fecha;
+        this.pacientes_DNI = pacientes_DNI;
+        this.Medicos_idMedicos = Medicos_idMedicos;
+        this.Horario_turno_id= Horario_turno_id;
     }
 
-    public getDia(): Date {
-        return this.dia;
+    public getFecha(): Date {
+        return this.fecha;
     }
 
-    public getHorario(): string {
-        return this.horario;
+    public getPacientes_DNI(): number {
+        return this.pacientes_DNI;
     }
 
-    public getMedico(): string {
-        return this.medico;
+    public getMedico(): number {
+        return this.Medicos_idMedicos;
     }
 
-    public getEspecialidad(): string {
-        return this.especialidad;
-    }
-
-    public getCobertura(): string {
-        return this.cobertura;
+    public getHorarioTurnoId(): number {
+        return this.Horario_turno_id;
     }
 
 }

@@ -1,8 +1,8 @@
 import { Controller, Post } from '@nestjs/common';
-import { Delete, Get } from '@nestjs/common/decorators/http/request-mapping.decorator';
-import { Param } from '@nestjs/common/decorators/http/route-params.decorator';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
+import { ConsultaDTO } from './consulta.dto';
 import { GuardarTurnoService } from './guardar-turno.service';
+import { TurnoGuardado } from './TurnoGuardado';
 
 @Controller('guardar-turno')
 export class GuardarTurnoController {
@@ -10,9 +10,9 @@ export class GuardarTurnoController {
     constructor (private guardarTurnoService: GuardarTurnoService) {
     };
 
-    @Post()
-    create (@Body() turnoGuardado: any) {
-        return this.guardarTurnoService.create(turnoGuardado);
+    @Post('turno-nuevo')
+    public create (@Body() turnoGuardadoDTO: any): Promise<TurnoGuardado> {
+        console.log("en el controller");
+        return this.guardarTurnoService.create(turnoGuardadoDTO);
     }
-
 }

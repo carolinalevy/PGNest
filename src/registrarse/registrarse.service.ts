@@ -34,8 +34,6 @@ export class RegistrarseService {
          nuevoRegistro.getContraseña() != "" || nuevoRegistro.getContraseña() != null)
              
          return nuevoRegistro;                
-
-        
     }
 
     public async getDatosRegistro(dni: number): Promise<Registro> {

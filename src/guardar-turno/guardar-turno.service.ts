@@ -2,47 +2,45 @@ import { Injectable } from '@nestjs/common';
 import { TurnoGuardado } from './TurnoGuardado';
 import * as fs from 'fs';
 import { Horario } from 'src/turno/Horario.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Equal, Repository } from 'typeorm';
+import { ConsultaDTO } from './consulta.dto';
+import { Medico } from 'src/turno/Medico.entity';
+import { Registro } from 'src/registrarse/Registro.entity';
 
 @Injectable()
 export class GuardarTurnoService {
 
-    public create(turnoGuardado: any) {
-        const nuevoTurno: TurnoGuardado = new TurnoGuardado (turnoGuardado.dia, turnoGuardado.horario, turnoGuardado.medico,
-            turnoGuardado.especialidad, turnoGuardado.cobertura);
-        
-        if (nuevoTurno.getDia() && nuevoTurno.getHorario() && nuevoTurno.getMedico() && nuevoTurno.getEspecialidad() && nuevoTurno.getCobertura()) {
-            fs.appendFileSync('resources/turnosGuardados.csv',
-                "\n" +
-                nuevoTurno.getDia() + ','
-                + nuevoTurno.getHorario() + ','
-                + nuevoTurno.getMedico() + ','
-                + nuevoTurno.getEspecialidad() + ','
-                + nuevoTurno.getCobertura()
-            );
-            this.deleteHorario(nuevoTurno.getHorario());
-            return "ok";
+    constructor (
+    @InjectRepository(TurnoGuardado)
+    private readonly turnoGuardadoRepository: Repository<TurnoGuardado>,
+    private readonly horarioRepository: Repository<Horario>,
+    private readonly medicoRepository: Repository<Medico>,
+    private readonly pacientesRepository: Repository<Registro>
+    ) {}
+
+    public async create(turnoGuardado: ConsultaDTO): Promise<TurnoGuardado> {
+        let paciente = await this.pacientesRepository.findOne({where: {email: Equal(turnoGuardado.userEmail)}} );
+
+        const fecha = await this.turnoGuardadoRepository.findOne({
+            where: [{"fecha": Equal(turnoGuardado.dia)}]
+        });
+
+        const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (fecha.getFecha(), paciente.getDni(), turnoGuardado.medicoId,
+            turnoGuardado.horarioId));
+            console.log(turnoGuardado.horarioId);
+        this.deleteHorario(turnoGuardado.horarioId);
+        return nuevoTurno;
+    }
+
+    public async deleteHorario(horarioId: number): Promise<boolean> {
+        let horarioToDelete: Horario = await this.horarioRepository.findOne(horarioId);
+        if (horarioToDelete) {
+            await this.horarioRepository.delete(horarioId);
+            return true;
         } else {
-            return "parametros incorrectos";
+            return false;
         }
     }
 
-    public deleteHorario(horario: string): boolean {
-
-        let index = -1;
-        let archivoHorarios = fs.readFileSync('resources/horarios.csv', 'utf8');
-    
-        let horarios = archivoHorarios.replace(/\r/g, "").split('\n');
-        for (let i=0; i< horarios.length; i++ ) {
-            if (horario== horarios[i]) {
-                index = i;
-            }
-        }
-        let removed = [];
-       
-        if (index > -1) {
-            removed = horarios.splice(index, 1);
-        }
-        fs.writeFileSync('resources/horarios.csv', horarios.join('\n'));
-        return removed.length == 1;
-    }
 }

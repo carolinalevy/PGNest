@@ -1,0 +1,8 @@
+export class ConsultaDTO {
+    readonly dia: Date;
+    readonly userEmail: string;
+    readonly medicoId: number;
+    readonly horarioId: number;
+    readonly cobertura: string;
+    readonly especialidad: string;
+}

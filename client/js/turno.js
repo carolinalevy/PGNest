@@ -48,6 +48,7 @@ async function loadListHorario() {
             console.log(response);
             let t = await response.json();
             listaHorario = t;
+            console.log(listaHorario);
             container.innerHTML = mostrarTablaHorario();
         } else {
             container.innerHTML = "Error al cargar";

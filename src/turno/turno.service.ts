@@ -63,7 +63,7 @@ export class TurnoService {
 
         let horarios: Horario[] = [];
         result.forEach(element => {
-            let h: Horario = new Horario(element['turno_Id'],
+            let h: Horario = new Horario(element['turno_id'],
                                             element['turno']);
             horarios.push(h);
         });
