@@ -1,20 +1,23 @@
 async function saveTurno() {
     let dia = document.getElementById('inputFecha').value;
-    let horario = document.getElementById('inputHorario').value;
-    let medico = document.getElementById('inputMedico').value;
+    let horarioId = document.getElementById('inputHorario').value;
+    let medicoId = document.getElementById('inputMedico').value;
     let especialidad = document.getElementById('inputEspecialidad').value;
     let cobertura = document.getElementById('inputCoberturaMedica').value;
+    let userMail = window.sessionStorage.getItem('user');
+
 
     let nuevoTurno = {
         "dia": dia,
-        "horario": horario,
-        "medico": medico,
+        "horarioId": horarioId,
+        "medicoId": medicoId,
         "especialidad": especialidad,
-        "cobertura": cobertura
-    }
+        "cobertura": cobertura,
+        "userEmail": userMail
+    } 
     let stringTurno = JSON.stringify(nuevoTurno);
 
-    let response = await fetch("/guardar-turno", {
+    let response = await fetch("/guardar-turno/turno-nuevo", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', 
@@ -22,6 +25,7 @@ async function saveTurno() {
         body: stringTurno
     }
     );
+    console.log(response);
     if (response.ok) {
         window.sessionStorage.setItem('turnoNuevo', stringTurno);
         window.location.href= "http://localhost:3000/paginaTurnoAsignado.html";
