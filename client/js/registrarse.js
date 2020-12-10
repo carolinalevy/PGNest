@@ -4,7 +4,6 @@ async function validar() {
     let contraseña = document.getElementById("inputPassword").value;
     let nombre = document.getElementById("inputNombre").value;
     let apellido = document.getElementById("inputApellido").value;
-    let direccion = document.getElementById("inputAddress").value;
     let telefono = document.getElementById("inputPhone").value;
     let cobertura = document.getElementById("inputObraSocial").value;
 
@@ -71,7 +70,7 @@ async function validar() {
             },
             body: stringDatos,
         });
-         stringUser
+        //  stringUser
         if (response.ok) 
             window.sessionStorage.setItem('userLogged', true);
             window.sessionStorage.setItem('user', stringDatos.email);
