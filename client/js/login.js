@@ -2,7 +2,7 @@
 async function validateLogin(e) {
     let user = {
       email: document.getElementById('formUser').value,
-      password: document.getElementById('formPassword').value,
+      contraseña: document.getElementById('formPassword').value,
     };
   
     let respuesta = await fetch('/login/validate', {

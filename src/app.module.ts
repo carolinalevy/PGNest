@@ -28,7 +28,7 @@ import { RegistrarseModule } from './registrarse/registrarse.module';
     LoginModule,
     RegistrarseModule,
   ],
-  controllers: [AppController, LoginController, RegistrarseController, GuardarTurnoController],
-  providers: [AppService, LoginService, RegistrarseService, GuardarTurnoService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }
