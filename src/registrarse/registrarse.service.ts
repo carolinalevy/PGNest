@@ -16,25 +16,36 @@ export class RegistrarseService {
     ) { }
 
 
-    public async create(registro: RegistroDTO): Promise<Registro> {
+    public async createRegistro(registro: RegistroDTO): Promise<Registro> {
+       
         const nuevoRegistro: Registro = await this.registroRepository.save(
-            new Registro(registro.DNI,
+            new Registro(
+                registro.DNI,
                 registro.email,
                 registro.nombre,
                 registro.apellido,
                 registro.telefono,
-                registro.cobertura));
+                registro.cobertura,
+                registro.contraseña));
+        console.log(nuevoRegistro);
+        if (nuevoRegistro.getEmail() != "" || nuevoRegistro.getEmail() != null || nuevoRegistro.getDni() != 0 || nuevoRegistro.getDni != null ||
+            nuevoRegistro.getNombre() != "" || nuevoRegistro.getNombre() != null || nuevoRegistro.getApellido() != "" || nuevoRegistro.getApellido() != null
+         || nuevoRegistro.getCobertura() != "" || nuevoRegistro.getCobertura() != null || nuevoRegistro.getCelular() != 0 || nuevoRegistro.getCelular != null ||
+         nuevoRegistro.getContraseña() != "" || nuevoRegistro.getContraseña() != null)
+             
+         return nuevoRegistro;                
 
-        return nuevoRegistro;
+        
     }
 
-    public async getDatosUsuarioRegistrado(dni: number): Promise<Registro[]> {
+    public async getDatosRegistro(dni: number): Promise<Registro> {
         try {
-            let response: Registro[] = await this.registroRepository.find({
+            let response: Registro = await this.registroRepository.findOne({
                 where: [{
                     "DNI": Equal(dni)
                 }]
             });
+            console.log(response);
             return response;
         }
         catch (error) {

@@ -1,24 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { Registro } from '../registrarse/Registro.entity';
-import * as fs from 'fs';
-import { Equal, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Usuario } from './usuario.entity';
-import { response } from 'express';
-import { HttpException } from '@nestjs/common/exceptions/http.exception';
-import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
-import { ok } from 'assert';
+
+
 
 
 @Injectable()
 export class LoginService {
 
     constructor(
-        @InjectRepository(Usuario) private readonly usuarioRepository: Repository<Usuario>
+        @InjectRepository(Registro) private readonly registroRepository: Repository<Registro>
     ) { }
 
     public async login(userInfo: any): Promise<boolean> {
-        let userLogged = new Usuario(userInfo.email, userInfo.contraseña);
+        let userLogged = new Registro(0, userInfo.email,"","", 0,"", userInfo.contraseña);
         let users = this.getUsers();
         for (const user of await users) {
 
@@ -30,8 +26,8 @@ export class LoginService {
         return false;
      }
 
-    private async getUsers(): Promise<Usuario[]> {
-        const allUsers = await this.usuarioRepository.find();
+    private async getUsers(): Promise<Registro[]> {
+        const allUsers = await this.registroRepository.find();
         return allUsers;
     }
 

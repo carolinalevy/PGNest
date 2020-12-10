@@ -20,14 +20,18 @@ export class Registro{
     @Column()
     private cobertura:string;
 
+    @Column()
+    private contraseña: string;
+
     constructor(DNI:number, email:string, nombre:string,
-        apellido:string, telefono:number, cobertura:string){
+        apellido:string, telefono:number, cobertura:string, contraseña:string){
             this.DNI= DNI;
             this.email=email;
             this.nombre=nombre;
             this.apellido=apellido;
             this.telefono = telefono;
             this.cobertura=cobertura;
+            this.contraseña = contraseña;
         }  
 
     public getEmail():string{
@@ -52,5 +56,9 @@ export class Registro{
 
     public getCobertura():string{
         return this.cobertura;
+    }
+
+    public getContraseña():string{
+        return this.contraseña;
     }
 }

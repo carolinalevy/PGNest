@@ -5,5 +5,6 @@ export class RegistroDTO{
     readonly apellido;
     readonly telefono;
     readonly cobertura;
+    readonly contraseña;
 
 }
