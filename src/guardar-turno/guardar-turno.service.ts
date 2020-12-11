@@ -33,7 +33,6 @@ export class GuardarTurnoService {
             console.log(turnoGuardado.horarioId);
     
         this.deleteHorario(turnoGuardado.horarioId);
-        console.log(nuevoTurno)
         return nuevoTurno;
     }
 
