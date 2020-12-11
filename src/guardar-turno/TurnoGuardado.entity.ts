@@ -7,10 +7,7 @@ export class TurnoGuardado {
     private idConsulta: number;
 
     @Column()
-    private fecha: Date;
-
-    @Column()
-    private pacientes_DNI: number;
+    private DNI: number;
 
     @Column()
     private Medicos_idMedicos: number;
@@ -18,19 +15,15 @@ export class TurnoGuardado {
     @Column()
     private Horario_turno_id: number;
     
-    constructor (fecha: Date, pacientes_DNI: number, Medicos_idMedicos: number, Horario_turno_id: number) {
-        this.fecha = fecha;
-        this.pacientes_DNI = pacientes_DNI;
+    constructor (DNI: number, Medicos_idMedicos: number, Horario_turno_id: number) {
+        //this.fecha = fecha;
+        this.DNI = DNI;
         this.Medicos_idMedicos = Medicos_idMedicos;
         this.Horario_turno_id= Horario_turno_id;
     }
 
-    public getFecha(): Date {
-        return this.fecha;
-    }
-
     public getPacientes_DNI(): number {
-        return this.pacientes_DNI;
+        return this.DNI;
     }
 
     public getMedico(): number {

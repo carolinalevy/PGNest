@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Especialidad } from './Especialidad.entity';
 import { Horario } from './Horario.entity';
 import { Medico } from './Medico.entity';
-import * as fs from 'fs';
 import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
 import { Repository } from 'typeorm';
 import { Equal } from 'typeorm/find-options/operator/Equal';
@@ -24,8 +23,8 @@ export class TurnoService {
     private listaHorarios: Horario[];
     private listaEspecialidades: Especialidad[];
 
-    public async getListaHorarios(): Promise<Horario[]> {
-        let listaDeHorarios: Promise<Horario[]> = this.loadHorario();
+    public async getListaHorarios(fecha: string): Promise<Horario[]> {
+        let listaDeHorarios: Promise<Horario[]> = this.loadHorario(fecha);
         return await listaDeHorarios;
     }
 
@@ -58,13 +57,15 @@ export class TurnoService {
      }
 
 
-    private async loadHorario(): Promise<Horario[]> {
-        const result = await this.horarioRepository.query("select * from horario");
-
+    private async loadHorario(fecha: string): Promise<Horario[]> {
+        const result = await this.horarioRepository.query(
+            "select * from horario where not exists (select 1 from consulta where consulta.Horario_turno_id = horario.turno_id) AND horario.fecha = ? ", [fecha]
+            );                                                                    
         let horarios: Horario[] = [];
         result.forEach(element => {
             let h: Horario = new Horario(element['turno_id'],
-                                            element['turno']);
+                                        element['fecha'],
+                                        element['turno']);
             horarios.push(h);
         });
         return horarios;
