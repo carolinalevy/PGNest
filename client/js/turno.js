@@ -40,14 +40,15 @@ async function loadListMedico(especialidad) {
     }
 }
 
-async function loadListHorario() {
+async function loadListHorario(fecha) {
     let container = document.getElementById('inputHorario');
     try {
-        let response = await fetch("/turno/horario");
+        let response = await fetch("/turno/horario/" + fecha);
         if (response.ok) {
             console.log(response);
             let t = await response.json();
             listaHorario = t;
+            container.style.display= 'block';
             console.log(listaHorario);
             container.innerHTML = mostrarTablaHorario();
         } else {
@@ -89,9 +90,14 @@ function mostrarTablaHorario() {
 }
 
 loadListEspecialidad();
-loadListHorario();
 let btnEspecialidad = document.getElementById("inputEspecialidad");
 btnEspecialidad.addEventListener('change', function (e) {
     loadListMedico(e.target.value);
+});
+let btnFecha = document.getElementById('inputFecha');
+console.log(btnFecha);
+btnFecha.addEventListener('change', function (e){
+    console.log(e.target.value);
+    loadListHorario(e.target.value);
 });
 

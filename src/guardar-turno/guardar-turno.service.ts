@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TurnoGuardado } from './TurnoGuardado';
+import { TurnoGuardado } from './TurnoGuardado.entity';
 import * as fs from 'fs';
 import { Horario } from 'src/turno/Horario.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -14,20 +14,21 @@ export class GuardarTurnoService {
     constructor (
     @InjectRepository(TurnoGuardado)
     private readonly turnoGuardadoRepository: Repository<TurnoGuardado>,
+    @InjectRepository(Horario)
     private readonly horarioRepository: Repository<Horario>,
+    @InjectRepository(Medico)
     private readonly medicoRepository: Repository<Medico>,
+    @InjectRepository(Registro)
     private readonly pacientesRepository: Repository<Registro>
     ) {}
 
     public async create(turnoGuardado: ConsultaDTO): Promise<TurnoGuardado> {
         let paciente = await this.pacientesRepository.findOne({where: {email: Equal(turnoGuardado.userEmail)}} );
+        console.log(turnoGuardado.dia);
+    
 
-        const fecha = await this.turnoGuardadoRepository.findOne({
-            where: [{"fecha": Equal(turnoGuardado.dia)}]
-        });
-
-        const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (fecha.getFecha(), paciente.getDni(), turnoGuardado.medicoId,
-            turnoGuardado.horarioId));
+        const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
+                                            turnoGuardado.medicoId, turnoGuardado.horarioId));
             console.log(turnoGuardado.horarioId);
         this.deleteHorario(turnoGuardado.horarioId);
         return nuevoTurno;

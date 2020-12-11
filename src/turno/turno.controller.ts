@@ -9,9 +9,9 @@ import { TurnoService } from './turno.service';
 export class TurnoController {
     constructor(private turnoService: TurnoService) { };
 
-    @Get('horario')
-    public getListaDeHorarios(): Promise<Horario[]> {
-        return this.turnoService.getListaHorarios();
+    @Get('horario/:fecha')
+    public getListaDeHorarios(@Param('fecha') fecha: string): Promise<Horario[]> {
+        return this.turnoService.getListaHorarios(fecha);
     }
 
     @Get('medico/:especialidad')
