@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { TurnoGuardado } from './TurnoGuardado.entity';
-import * as fs from 'fs';
 import { Horario } from 'src/turno/Horario.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Equal, Repository } from 'typeorm';
@@ -33,6 +32,7 @@ export class GuardarTurnoService {
             console.log(turnoGuardado.horarioId);
     
         this.deleteHorario(turnoGuardado.horarioId);
+        console.log(nuevoTurno)
         return nuevoTurno;
     }
 
