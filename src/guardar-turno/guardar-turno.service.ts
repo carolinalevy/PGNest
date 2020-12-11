@@ -11,6 +11,7 @@ import { Registro } from 'src/registrarse/Registro.entity';
 @Injectable()
 export class GuardarTurnoService {
 
+
     constructor (
     @InjectRepository(TurnoGuardado)
     private readonly turnoGuardadoRepository: Repository<TurnoGuardado>,
@@ -30,6 +31,7 @@ export class GuardarTurnoService {
         const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
                                             turnoGuardado.medicoId, turnoGuardado.horarioId));
             console.log(turnoGuardado.horarioId);
+    
         this.deleteHorario(turnoGuardado.horarioId);
         return nuevoTurno;
     }
