@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
 import { Registro } from './Registro.entity';
 import { Equal, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -36,11 +35,11 @@ export class RegistrarseService {
          return nuevoRegistro;                
     }
 
-    public async getDatosRegistro(dni: number): Promise<Registro> {
+    public async getDatosRegistro(email: string): Promise<Registro> {
         try {
             let response: Registro = await this.registroRepository.findOne({
                 where: [{
-                    "DNI": Equal(dni)
+                    "email": Equal(email)
                 }]
             });
             console.log(response);
@@ -54,6 +53,28 @@ export class RegistrarseService {
         }
     }
 
+    public async modificarRegistro(registroNuevo: RegistroDTO, email: string): Promise <Registro> {
+        let pacienteRegistrado: Registro = await this.registroRepository.findOne({
+            where: [{
+                "email": Equal(email)
+            }]
+        });
+
+        if(pacienteRegistrado.getEmail()) {
+            pacienteRegistrado.setNombre(registroNuevo.nombre);
+            pacienteRegistrado.setApellido(registroNuevo.apellido);
+            pacienteRegistrado.setCelular(registroNuevo.telefono);
+            pacienteRegistrado.setCobertura(registroNuevo.cobertura);
+            pacienteRegistrado.setContraseña(registroNuevo.contraseña);
+            pacienteRegistrado.setDni(pacienteRegistrado.getDni());
+            pacienteRegistrado.setEmail(registroNuevo.email);
+        }
+        const pacienteUpdated : Registro = await this.registroRepository.save(pacienteRegistrado);
+
+        if(pacienteUpdated) {
+            return pacienteUpdated;
+        }
+    }
+
 }
 
-// mostrar error si los parametros no estan completos --> en js o en service?

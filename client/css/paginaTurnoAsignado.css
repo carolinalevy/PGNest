@@ -87,6 +87,10 @@ ul {
 }
 
 .container-main_info{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    align-content: center;
     color:#005691;
     padding: 10px;
     margin: 20px;
