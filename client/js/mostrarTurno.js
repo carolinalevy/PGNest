@@ -1,5 +1,6 @@
 function displayTurno() {
     let turno = JSON.parse(window.sessionStorage.getItem('turnoNuevo'));
+    console.log(turno);
     let medico = document.getElementById('nombreMedico');
     let fecha = document.getElementById('nombreFecha');
     let horario = document.getElementById('nombreHorario');

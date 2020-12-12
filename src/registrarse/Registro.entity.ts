@@ -38,27 +38,55 @@ export class Registro{
         return this.email;
     }
 
+    public setEmail(email:string): void {
+        this.email = email;
+    }
+
     public getNombre():string{
         return this.nombre;
+    }
+
+    public setNombre(nombre:string): void {
+        this.nombre = nombre;
     }
 
     public getApellido(): string{
         return this.apellido;
     }
 
+    public setApellido(apellido: string): void {
+        this.apellido = apellido;
+    }
+
     public getDni():number{
         return this.DNI;
+    }
+
+    public setDni(dni:number): void {
+        this.DNI = dni;
     }
 
     public getCelular():number{
         return this.telefono;
     }
 
+    public setCelular(celular: number): void {
+        this.telefono = celular;
+    }
+
     public getCobertura():string{
         return this.cobertura;
     }
 
+    public setCobertura(cobertura: string): void {
+        this.cobertura = cobertura;
+    }
+
     public getContraseña():string{
         return this.contraseña;
+    }
+
+    public setContraseña(contraseña: string): void {
+        this.contraseña = contraseña;
     }
 }

@@ -29,19 +29,8 @@ export class GuardarTurnoService {
 
         const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
                                             turnoGuardado.medicoId, turnoGuardado.horarioId));
-            console.log(turnoGuardado.horarioId);
-        this.deleteHorario(turnoGuardado.horarioId);
+            console.log("turno guardado.horario" +turnoGuardado.horarioId);
         return nuevoTurno;
-    }
-
-    public async deleteHorario(horarioId: number): Promise<boolean> {
-        let horarioToDelete: Horario = await this.horarioRepository.findOne(horarioId);
-        if (horarioToDelete) {
-            await this.horarioRepository.delete(horarioId);
-            return true;
-        } else {
-            return false;
-        }
     }
 
 }

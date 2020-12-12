@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { Post } from '@nestjs/common/decorators/http/request-mapping.decorator';
+import { Post, Put } from '@nestjs/common/decorators/http/request-mapping.decorator';
 import { Body, Param } from '@nestjs/common/decorators/http/route-params.decorator';
 import { RegistrarseService } from './registrarse.service';
 import { RegistroDTO } from './Registro.dto';
@@ -15,10 +15,16 @@ export class RegistrarseController {
         return this.registrarseService.createRegistro(registro);
     }
 
-    @Get(':dni')
-    public getDatosUsuarioRegistrado(@Param('dni') dni:number) {
-        return this.registrarseService.getDatosRegistro(dni);
+    @Get(':email')
+    public getDatosUsuarioRegistrado(@Param('email') email:string) {
+        return this.registrarseService.getDatosRegistro(email);
     }
+
+    @Put(':email')
+    modifyRegistro(@Body() registroNuevo: RegistroDTO, @Param('email') email:string): Promise <Registro>{
+        return this.registrarseService.modificarRegistro(registroNuevo, email);
+    }
+
 }
 
 
