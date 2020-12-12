@@ -11,39 +11,64 @@ import { Registro } from 'src/registrarse/Registro.entity';
 export class GuardarTurnoService {
 
 
-    constructor (
-    @InjectRepository(TurnoGuardado)
-    private readonly turnoGuardadoRepository: Repository<TurnoGuardado>,
-    @InjectRepository(Horario)
-    private readonly horarioRepository: Repository<Horario>,
-    @InjectRepository(Medico)
-    private readonly medicoRepository: Repository<Medico>,
-    @InjectRepository(Registro)
-    private readonly pacientesRepository: Repository<Registro>
-    ) {}
+    constructor(
+        @InjectRepository(TurnoGuardado)
+        private readonly turnoGuardadoRepository: Repository<TurnoGuardado>,
+        @InjectRepository(Horario)
+        private readonly horarioRepository: Repository<Horario>,
+        @InjectRepository(Medico)
+        private readonly medicoRepository: Repository<Medico>,
+        @InjectRepository(Registro)
+        private readonly pacientesRepository: Repository<Registro>
+    ) { }
 
     public async create(turnoGuardado: ConsultaDTO): Promise<TurnoGuardado> {
-        let paciente = await this.pacientesRepository.findOne({where: {email: Equal(turnoGuardado.userEmail)}} );
+        let paciente = await this.pacientesRepository.findOne({ where: { email: Equal(turnoGuardado.userEmail) } });
         console.log(turnoGuardado.dia);
-    
+        console.log(turnoGuardado.horarioId);
 
-        const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
-                                            turnoGuardado.medicoId, turnoGuardado.horarioId));
-            console.log(turnoGuardado.horarioId);
-    
-        this.deleteHorario(turnoGuardado.horarioId);
-        console.log(nuevoTurno)
-        return nuevoTurno;
+
+        const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado(paciente.getDni(),
+            turnoGuardado.medicoId, turnoGuardado.horarioId));
+        if (nuevoTurno.getIdConsulta())
+            return nuevoTurno;
+
     }
 
-    public async deleteHorario(horarioId: number): Promise<boolean> {
-        let horarioToDelete: Horario = await this.horarioRepository.findOne(horarioId);
-        if (horarioToDelete) {
-            await this.horarioRepository.delete(horarioId);
-            return true;
-        } else {
-            return false;
+    public async geTurnoCompleto(idConsulta: number, DNI: number): Promise<any> {
+
+        const consulta: TurnoGuardado = await this.turnoGuardadoRepository.findOne(idConsulta);
+        const paciente: Registro = await this.pacientesRepository.findOne(DNI);
+
+        const medico: Medico = await this.medicoRepository.findOne(consulta.getMedico());
+
+        const horario: Horario = await this.horarioRepository.findOne(consulta.getHorarioTurnoId());
+
+        const turno = {
+            "nombreMedico": medico.getApellidoNombre(),
+            "fecha": horario.getFecha(),
+            "horario": horario.getTurno(),
+            "cobertura": paciente.getCobertura()
         }
+
+        return turno;
     }
 
+    public async getNombreMEdicoElegido(idMedico: number): Promise<any> {
+
+        const nombreMedico: any = await this.medicoRepository.findOne(
+            { where: { idMedicos: Equal(idMedico) } }
+        )
+
+        console.log(nombreMedico)
+        return nombreMedico;
+    }
+
+    public async getHorarioElegido(idHorario: number) {
+        const horarioElegido: any = await this.horarioRepository.findOne(
+            { where: { turno_id: Equal(idHorario) } }
+        )
+        console.log(horarioElegido);
+        return horarioElegido;
+    }
 }
