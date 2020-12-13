@@ -24,12 +24,18 @@
     <div class="container-menu col-sm">
         <!-- Nav Bar-->
         <div class="nav">
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-light" id="navBarMain">
                 <li class="nav-item dropdown">
-                    <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown"> Log In </a>
-                    <ul class="dropdown-menu fade-up">
+                    <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown" id="userNameNavLink"> Log In </a>
+                    <ul class="dropdown-menu fade-up" id="navBarNotLogged">
                         <li><a class="dropdown-item" href="./pagina1.html"> Entrar</a></li>
                         <li><a class="dropdown-item" href="./pagina2.html"> Registrarme </a></li>
+                    </ul>
+                    <ul class="dropdown-menu fade-up d-none" id="navBarLogged">
+                        <li><a class="dropdown-item" href="./turnoEspecialidad.html"> Sacar turno</a></li>
+                        <li><a class="dropdown-item" href="./misDatos.html"> Datos personales </a></li>
+                        <li><a class="dropdown-item" href="#"> Historial de turnos </a></li>
+                        <li><a class="dropdown-item" href="./Index.html" id="logOut"> Cerrar sesión </a></li>
                     </ul>
                 </li>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
@@ -175,6 +181,8 @@
         </div>
     </div>
 
+    <script src="js/manejoUsuarioNavIndex.js"></script>
+    <script src="js/logout.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>

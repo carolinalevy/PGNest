@@ -11,7 +11,14 @@ function mostrarNav(usuario) {
     if(usuario == null){
         return 
     }
+    let navBarLogged = document.getElementById("navBarLogged");
+    let navBarNotLogged = document.getElementById("navBarNotLogged");
+
+    navBarNotLogged.classList.add("d-none");
+    navBarLogged.classList.remove("d-none");
+
     document.getElementById("userNameNavLink").innerHTML = usuario;
+
 }
 
 let usuario = getNombreUsuarioLoggeado();
