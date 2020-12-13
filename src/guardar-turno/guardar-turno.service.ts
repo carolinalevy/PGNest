@@ -29,6 +29,7 @@ export class GuardarTurnoService {
 
         const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
                                             turnoGuardado.medicoId, turnoGuardado.horarioId));
+
            if (nuevoTurno.getIdConsulta())
         return nuevoTurno;
     }
