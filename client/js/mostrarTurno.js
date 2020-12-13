@@ -19,5 +19,4 @@ if (respuestaTurno.ok){
 } 
 }
 
-
 displayTurno();
