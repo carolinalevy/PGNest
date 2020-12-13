@@ -31,6 +31,7 @@ export class GuardarTurnoService {
                                             turnoGuardado.medicoId, turnoGuardado.horarioId));
 
            if (nuevoTurno.getIdConsulta())
+
         return nuevoTurno;
     }
 
