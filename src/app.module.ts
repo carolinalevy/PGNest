@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TurnoModule } from './turno/turno.module';
 import { TypeOrmModule } from '@nestjs/typeorm/dist';
+import { TurnoGuardado } from './guardar-turno/TurnoGuardado.entity';
 import { LoginModule } from './login/login.module';
 import { RegistrarseModule } from './registrarse/registrarse.module';
 import { GuardarTurnoModule } from './guardar-turno/guardar-turno.module';
@@ -19,7 +20,7 @@ import { GuardarTurnoModule } from './guardar-turno/guardar-turno.module';
     TurnoModule,
     LoginModule,
     RegistrarseModule,
-    GuardarTurnoModule,
+    GuardarTurnoModule
   ],
   controllers: [AppController],
   providers: [AppService],

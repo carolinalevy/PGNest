@@ -22,6 +22,10 @@ export class TurnoGuardado {
         this.Horario_turno_id= Horario_turno_id;
     }
 
+    public getIdConsulta(): number{
+        return this.idConsulta;
+    }
+
     public getPacientes_DNI(): number {
         return this.DNI;
     }

@@ -36,6 +36,9 @@ export class Medico{
        return this.idMedicos;
    }
 
+   public getApellidoNombre(): string{
+       return `${this.nombre} ${this.apellido}`;
+   }
    public getEspecialidad():string{
        return this.especialidades_nombreEspecialidad;
    }

@@ -3,6 +3,4 @@ export class ConsultaDTO {
     readonly userEmail: string;
     readonly medicoId: number;
     readonly horarioId: number;
-    readonly cobertura: string;
-    readonly especialidad: string;
 }

@@ -27,7 +27,9 @@ async function saveTurno() {
     );
     console.log(response);
     if (response.ok) {
-        window.sessionStorage.setItem('turnoNuevo', stringTurno);
+        let respuesta =await response.json();
+        console.log(respuesta);
+        window.sessionStorage.setItem('turnoNuevo', respuesta.idConsulta);
         window.location.href= "http://localhost:3000/paginaTurnoAsignado.html";
     };
 }
