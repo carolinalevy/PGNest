@@ -26,13 +26,13 @@ export class GuardarTurnoService {
         let paciente = await this.pacientesRepository.findOne({ where: { email: Equal(turnoGuardado.userEmail) } });
         console.log(turnoGuardado.dia);
         console.log(turnoGuardado.horarioId);
+        console.log(paciente)
 
         const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
                                             turnoGuardado.medicoId, turnoGuardado.horarioId));
 
            if (nuevoTurno.getIdConsulta())
-
-        return nuevoTurno;
+                  return nuevoTurno;
     }
 
     public async geTurnoCompleto(idConsulta: number): Promise<any> {

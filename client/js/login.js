@@ -1,5 +1,6 @@
 
 async function validateLogin(e) {
+  e.preventDefault();
     let user = {
       email: document.getElementById('formUser').value,
       contraseña: document.getElementById('formPassword').value,
