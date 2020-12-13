@@ -1,7 +1,9 @@
+
 async function  displayTurno() {
     let idConsulta = JSON.parse(window.sessionStorage.getItem('turnoNuevo'));
     let respuestaTurno = await fetch("/guardar-turno/turno/" + idConsulta );
     console.log(idConsulta, respuestaTurno);
+
     let medico = document.getElementById('nombreMedico');
     let fecha = document.getElementById('nombreFecha');
     let horario = document.getElementById('nombreHorario');

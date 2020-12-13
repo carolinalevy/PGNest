@@ -1,26 +1,34 @@
 
  async function displayDatos() {
+
     let usuario = window.sessionStorage.getItem('user');
-    let respuesta = await fetch('/obtener-datos/' + usuario)
-    console.log(respuesta);
-// agregar la respuesta json.
     let nombre = document.getElementById('inputNombre');
     let apellido = document.getElementById('inputApellido');
     let dni = document.getElementById('inputDNI');
-    let direccion = document.getElementById('inputDireccion');
     let telefono = document.getElementById('inputPhone');
     let cobertura = document.getElementById('inputObraSocial');
     let email = document.getElementById('inputEmail');
+  
+try {
+    let response = await fetch("/registrarse/" + usuario);
+ 
+    if (response.ok) {
+        
+        let t = await response.json();
+        nombre.innerHTML = t.nombre;
+        apellido.innerHTML = t.apellido;
+        dni.innerHTML = t.DNI;
+        telefono.innerHTML = t.telefono;
+        cobertura.innerHTML = t.cobertura;
+        email.innerHTML = t.email;
+    
+    } else {
+        nombre.innerHTML = "Error al cargar";
+    }
 
-    console.log(respuesta);
-    nombre.value = respuesta.nombre;
-    apellido.value = respuesta.apellido;
-    dni.innerHTML = respuesta.dni;
-    direccion.innerHTML = respuesta.direccion;
-    telefono.innerHTML = respuesta.celular;
-    cobertura.innerHTML = respuesta.cobertura;
-    email.innerHTML = respuesta.email;
-}
-// no toma los datos desde el objeto, da undefined
+} catch (response) {
+    nombre.innerHTML = 'Conection Error!'
+}}
+   
 
 displayDatos();
