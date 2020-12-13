@@ -34,10 +34,10 @@ export class GuardarTurnoService {
             return nuevoTurno;
     }
 
-    public async geTurnoCompleto(idConsulta: number, DNI: number): Promise<any> {
+    public async geTurnoCompleto(idConsulta: number): Promise<any> {
 
         const consulta: TurnoGuardado = await this.turnoGuardadoRepository.findOne(idConsulta);
-        const paciente: Registro = await this.pacientesRepository.findOne(DNI);
+        const paciente: Registro = await this.pacientesRepository.findOne(consulta.getPacientes_DNI());
 
         const medico: Medico = await this.medicoRepository.findOne(consulta.getMedico());
 
@@ -69,11 +69,5 @@ export class GuardarTurnoService {
         )
         console.log(horarioElegido);
         return horarioElegido;
-    }
-  
-        const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
-                                            turnoGuardado.medicoId, turnoGuardado.horarioId));
-            console.log("turno guardado.horario" +turnoGuardado.horarioId);
-        return nuevoTurno;
     }
 }
