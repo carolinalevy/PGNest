@@ -32,12 +32,12 @@ export class GuardarTurnoService {
             turnoGuardado.medicoId, turnoGuardado.horarioId));
         if (nuevoTurno.getIdConsulta())
             return nuevoTurno;
+
     }
 
     public async geTurnoCompleto(idConsulta: number): Promise<any> {
 
         const consulta: TurnoGuardado = await this.turnoGuardadoRepository.findOne(idConsulta);
-        const paciente: Registro = await this.pacientesRepository.findOne(consulta.getPacientes_DNI());
 
         const medico: Medico = await this.medicoRepository.findOne(consulta.getMedico());
 
@@ -47,7 +47,7 @@ export class GuardarTurnoService {
             "nombreMedico": medico.getApellidoNombre(),
             "fecha": horario.getFecha(),
             "horario": horario.getTurno(),
-            "cobertura": paciente.getCobertura()
+        
         }
 
         return turno;
