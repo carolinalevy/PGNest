@@ -3,15 +3,13 @@ async function saveTurno(e) {
     let horarioId = document.getElementById('inputHorario').value;
     let medicoId = document.getElementById('inputMedico').value;
     let especialidad = document.getElementById('inputEspecialidad').value;
-    let cobertura = document.getElementById('inputCoberturaMedica').value;
-    let userMail = window.sessionStorage.getItem('user').value;
+    let userMail = window.sessionStorage.getItem('user');
 
         let nuevoTurno = {
             "dia": dia.value,
             "horarioId": horarioId,
             "medicoId": medicoId,
             "especialidad": especialidad,
-            "cobertura": cobertura,
             "userEmail": userMail
         }
         let stringTurno = JSON.stringify(nuevoTurno);
