@@ -6,7 +6,7 @@ async function saveTurno(e) {
     let userMail = window.sessionStorage.getItem('user');
 
         let nuevoTurno = {
-            "dia": dia.value,
+            "dia": dia,
             "horarioId": horarioId,
             "medicoId": medicoId,
             "especialidad": especialidad,
@@ -22,6 +22,7 @@ async function saveTurno(e) {
             body: stringTurno
         });
         console.log(response);
+        
         if (response.ok) {
             let respuesta = await response.json();
             console.log(respuesta);

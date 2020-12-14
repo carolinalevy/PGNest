@@ -24,9 +24,9 @@ export class GuardarTurnoService {
 
     public async create(turnoGuardado: ConsultaDTO): Promise<TurnoGuardado> {
         let paciente = await this.pacientesRepository.findOne({ where: { email: Equal(turnoGuardado.userEmail) } });
-        console.log(turnoGuardado.dia);
-        console.log(turnoGuardado.horarioId);
-        console.log(paciente)
+        console.log(turnoGuardado.dia + " DIA!");
+        console.log(turnoGuardado.horarioId + " HORARIO");
+        console.log(paciente + " paciente")
 
         const nuevoTurno: TurnoGuardado = await this.turnoGuardadoRepository.save(new TurnoGuardado (paciente.getDni(), 
                                             turnoGuardado.medicoId, turnoGuardado.horarioId));
@@ -38,6 +38,8 @@ export class GuardarTurnoService {
     public async geTurnoCompleto(idConsulta: number): Promise<any> {
 
         const consulta: TurnoGuardado = await this.turnoGuardadoRepository.findOne(idConsulta);
+
+        const paciente : Registro = await this.pacientesRepository.findOne(consulta.getDni());
 
         const medico: Medico = await this.medicoRepository.findOne(consulta.getMedico());
 
