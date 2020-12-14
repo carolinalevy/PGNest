@@ -46,45 +46,18 @@
         </div>
     </div>
     <div class="container-main_info col-sm">
-            <form>
-                <div class="form-row justify-content-md-center">
-                    <div class="form-group col-sm-4">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" class="form-control form-control-sm" id="inputEmail" placeholder="Email">
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="Contraseña">
-                    </div>
-                </div>
-                <div class="form-row justify-content-md-center">
-                    <div class="form-group col-sm-4">
-                        <label for="inputNombre">Nombre</label>
-                        <input type="text" class="form-control form-control-sm" id="inputNombre" placeholder="Nombre">
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="inputApellido">Apellido</label>
-                        <input type="text" class="form-control form-control-sm" id="inputApellido" >
-                    </div>
-                </div>
-                <div class="form-row justify-content-md-center">
-                    <div class="form-group col-sm-4">
-                        <label for="inputDNI">DNI</label>
-                        <input type="text" readonly class="form-control form-control-sm" id="inputDNI" placeholder="DNI">
-                    </div>
-                    <div class="form-group col-sm-4">
-                        <label for="inputPhone">Celular</label>
-                        <input type="text" class="form-control form-control-sm" id="inputPhone" placeholder="N° Celular">
-                    </div>
-                </div>
-                <div class="form-row justify-content-md-center">
-                  <div class="form-group col-sm-4">
-                    <label for="inputObraSocial">Cobertura Médica</label>
-                    <input type="text" class="form-control form-control-sm" id="inputObraSocial">
-                  </div>
-                </div>
-                
-            </form>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Estado</th>
+                <th scope="col">Día</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Médico</th>
+              </tr>
+            </thead>
+            <tbody id="tblHistorial"></tbody>
+          </table>
         <div>
             <div class="form-row justify-content-sm-center">
               <a href="./paginaUsuario.html">  <button type="submit" class="btn btn-outline-secondary" id="btn-ModifyDatos" href="./paginaUsuario.html"> Aceptar </button></a>
@@ -139,7 +112,7 @@
     </div>
 
     <script src="js/manejoUsuarioNav.js"></script>
-    <script src="js/modificarDatos.js"></script>
+    <script src="js/mostrarHistorial.js"></script>
     <script src="js/logout.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

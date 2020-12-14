@@ -9,6 +9,7 @@ import { TurnoGuardado } from './guardar-turno/TurnoGuardado.entity';
 import { LoginModule } from './login/login.module';
 import { RegistrarseModule } from './registrarse/registrarse.module';
 import { GuardarTurnoModule } from './guardar-turno/guardar-turno.module';
+import { GetTurnoModule } from './get-turno/get-turno.module';
 
 @Module({
 
@@ -20,7 +21,8 @@ import { GuardarTurnoModule } from './guardar-turno/guardar-turno.module';
     TurnoModule,
     LoginModule,
     RegistrarseModule,
-    GuardarTurnoModule
+    GuardarTurnoModule,
+    GetTurnoModule
   ],
   controllers: [AppController],
   providers: [AppService],
