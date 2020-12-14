@@ -42,12 +42,12 @@ export class GuardarTurnoService {
         const medico: Medico = await this.medicoRepository.findOne(consulta.getMedico());
 
         const horario: Horario = await this.horarioRepository.findOne(consulta.getHorarioTurnoId());
-
+        const paciente: Registro = await this.pacientesRepository.findOne(consulta.getDni());
         const turno = {
             "nombreMedico": medico.getApellidoNombre(),
             "fecha": horario.getFecha(),
             "horario": horario.getTurno(),
-        
+            "cobertura": paciente.getCobertura()
         }
 
         return turno;

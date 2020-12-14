@@ -13,7 +13,7 @@ async function  displayTurno() {
         medico.innerHTML = respuesta.nombreMedico
         fecha.innerHTML = (respuesta.fecha).substring(0, 10)
         horario.innerHTML = respuesta.horario
-
+        cobertura.innerHTML = respuesta.cobertura
     }
 }
 
