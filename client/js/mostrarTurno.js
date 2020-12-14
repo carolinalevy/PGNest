@@ -5,6 +5,7 @@ async function  displayTurno() {
     let medico = document.getElementById('nombreMedico');
     let fecha = document.getElementById('nombreFecha');
     let horario = document.getElementById('nombreHorario');
+    let cobertura = document.getElementById('nombreCobertura');
     
     if (respuestaTurno.ok) {
         let respuesta = await respuestaTurno.json();
