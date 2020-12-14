@@ -39,8 +39,6 @@ export class GuardarTurnoService {
 
         const consulta: TurnoGuardado = await this.turnoGuardadoRepository.findOne(idConsulta);
 
-        const paciente : Registro = await this.pacientesRepository.findOne(consulta.getDni());
-
         const medico: Medico = await this.medicoRepository.findOne(consulta.getMedico());
 
         const horario: Horario = await this.horarioRepository.findOne(consulta.getHorarioTurnoId());
