@@ -45,11 +45,11 @@ async function loadListHorario(fecha) {
     try {
         let response = await fetch("/turno/horario/" + fecha);
         if (response.ok) {
-            console.log(response);
+            // console.log(response);
             let t = await response.json();
             listaHorario = t;
             container.style.display= 'block';
-            console.log(listaHorario);
+            // console.log(listaHorario);
             container.innerHTML = mostrarTablaHorario();
         } else {
             container.innerHTML = "Error al cargar";
