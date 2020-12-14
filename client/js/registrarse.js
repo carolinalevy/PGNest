@@ -1,65 +1,73 @@
-async function validar() {
-    let dni = document.getElementById("inputDNI").value;
-    let email = document.getElementById("inputEmail").value;
-    let contraseña = document.getElementById("inputPassword").value;
-    let nombre = document.getElementById("inputNombre").value;
-    let apellido = document.getElementById("inputApellido").value;
-    let telefono = document.getElementById("inputPhone").value;
-    let cobertura = document.getElementById("inputObraSocial").value;
+async function validar(e) {
+    let dni = document.getElementById("inputDNI");
+    let email = document.getElementById("inputEmail");
+    let contraseña = document.getElementById("inputPassword");
+    let nombre = document.getElementById("inputNombre");
+    let apellido = document.getElementById("inputApellido");
+    let telefono = document.getElementById("inputPhone");
+    let cobertura = document.getElementById("inputObraSocial");
 
-    // e.preventDefault();
-    // let check = false;
-    // if (email == "" || email == null) {
-    //     document.getElementById('inputEmail').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    e.preventDefault();
+    let check = false;
+    if (cobertura.value == "" || cobertura.value == null) {
+        cobertura.focus();
+        check = true;
+    }
 
-    // if (dni == "" || dni == null) {
-    //     document.getElementById('inputEmail').style.borderColor = "black";
-    //     document.getElementById('inputDNI').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    check;
+    
+    if (telefono.value == "" || telefono.value == null) {
+        telefono.focus();
+        check = true;
+    }
 
-    // if (password == "" || password == null) {
-    //     document.getElementById('inputPassword').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    check;
 
+    if (dni.value == "" || dni.value == null) {
+        dni.focus();
+        check = true;
+    }
 
-    // if (nombre == "" || nombre == null) {
-    //     document.getElementById('inputNombre').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    check;
 
-    // if (apellido == "" || apellido == null) {
-    //     document.getElementById('inputApellido').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    if (apellido.value == "" || apellido.value == null) {
+        apellido.focus();
+        check = true;
+    }
 
-    // if (telefono == "" || telefono == null) {
-    //     document.getElementById('inputPhone').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    check;
+    
+    if (nombre.value == "" || nombre.value == null) {
+        nombre.focus();
+        check = true;
+    }
 
-    // if (direccion == "" || direccion == null) {
-    //     document.getElementById('inputAddress').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    check;
 
-    // if (cobertura == "" || cobertura == null) {
-    //     document.getElementById('inputObraSocial').style.borderColor = "#ff0000";
-    //     check = true;
-    // }
+    if (contraseña.value == "" || contraseña.value == null) {
+        contraseña.focus();
+        check = true;
+    }
+    
+    check;
 
-    // if (check == false) {
+    if (email.value == "" || email.value == null) {
+        email.focus();
+        check = true;
+    }
+
+    check;
+
+ 
+    if (check == false) {
         let nuevoRegistro = {
-            "DNI": dni,
-            "email": email,
-            "nombre": nombre,
-            "apellido": apellido,
-            "telefono": telefono,
-            "cobertura": cobertura,
-            "contraseña": contraseña
+            "DNI": dni.value,
+            "email": email.value,
+            "nombre": nombre.value,
+            "apellido": apellido.value,
+            "telefono": telefono.value,
+            "cobertura": cobertura.value,
+            "contraseña": contraseña.value
         }    
         let stringDatos = JSON.stringify(nuevoRegistro);
     
@@ -70,7 +78,7 @@ async function validar() {
             },
             body: stringDatos,
         });
-        //  stringUser
+    
         if (response.ok) 
             window.sessionStorage.setItem('userLogged', true);
             window.sessionStorage.setItem('user', stringDatos.email);
@@ -78,6 +86,6 @@ async function validar() {
             window.location.href = "http://localhost:3000/pagina1.html";
     }
 
-
+}
 let btnRegistro = document.getElementById("btn-registro");
 btnRegistro.addEventListener("click", validar);

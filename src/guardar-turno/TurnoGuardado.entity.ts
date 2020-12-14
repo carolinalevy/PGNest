@@ -26,7 +26,7 @@ export class TurnoGuardado {
         return this.idConsulta;
     }
 
-    public getPacientes_DNI(): number {
+    public getDni(): number {
         return this.DNI;
     }
 
