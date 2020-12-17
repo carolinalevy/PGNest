@@ -1,15 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { TurnoGuardado } from './TurnoGuardado.entity';
 import { Horario } from 'src/turno/Horario.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Equal, Repository } from 'typeorm';
+import { DeleteDateColumn, Equal, Repository } from 'typeorm';
 import { ConsultaDTO } from './consulta.dto';
 import { Medico } from 'src/turno/Medico.entity';
 import { Registro } from 'src/registrarse/Registro.entity';
 
 @Injectable()
 export class GuardarTurnoService {
-
 
     constructor(
         @InjectRepository(TurnoGuardado)
@@ -70,4 +69,23 @@ export class GuardarTurnoService {
         console.log(horarioElegido);
         return horarioElegido;
     }
+
+    public async borrarTurno(idConsulta: number): Promise<boolean> {
+        try {
+        let turno = await this.turnoGuardadoRepository.findOne(idConsulta);
+        console.log(idConsulta + "consulta");
+console.log(turno);
+        if ( turno != null){
+            await this.turnoGuardadoRepository.remove(turno);
+        return true;
+        }
+        return false;
+    }catch (error){
+        throw new HttpException({
+            status: HttpStatus.NOT_FOUND,
+            error: "there is an error in the request, " + error,
+          }, HttpStatus.NOT_FOUND);
+    }
+    }
+
 }
