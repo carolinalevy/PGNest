@@ -67,5 +67,8 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "motores": { 
+    "nodo": "12.16.3" 
   }
 }
