@@ -33,7 +33,7 @@ function mostrarListaTurnos(turnos){
     }
 
     container.innerHTML = html;
-    let btnCancelar = document.querySelectorAll(".btn-delete-turno");
+    let btnCancelar = document.querySelectorAll(".btn-outline-secondary");
     btnCancelar.forEach(e => {
         e.addEventListener("click", btnDeletearTurnos);
     });
