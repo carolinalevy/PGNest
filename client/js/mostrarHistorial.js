@@ -7,6 +7,7 @@ async function loadListaTurnos() {
     mostrarListaTurnos(turnos);
 }
 
+
 function mostrarListaTurnos(turnos){
     let container = document.getElementById("tblHistorial");    
     let html = "";
@@ -14,7 +15,7 @@ function mostrarListaTurnos(turnos){
     for (let i = 0; i < turnos.length; i++) {
         let estado = "Activo";
         let t = turnos[i];
-        let btnBorrar = `<button class="btn btn-outline-secondary" idConsulta="${t.iDConsulta}">Cancelar</button>`;
+        let btnBorrar = `<button class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" idConsulta="${t.iDConsulta}">Cancelar</button>`;
         const miFecha = new Date(t.fecha);
         if(miFecha < fechaActual) {
             estado = "Expiró";
@@ -39,16 +40,23 @@ function mostrarListaTurnos(turnos){
     });
 }
 
-async function btnDeletearTurnos(){
+async function btnDeletearTurnos() {
     let idConsulta = this.getAttribute("idConsulta");
-    let response = await fetch(`/guardar-turno/delete/${idConsulta}`, {
-    method: "DELETE",
-    headers: {
-    "Content-Type": "application/json"
-    }
-    })
-    loadListaTurnos();
-}
 
+    let cancel = document.getElementById("cancel");
+    cancel.addEventListener('click', (async function() {
+        
+        console.log(idConsulta + "es el idConsulta")
+        let response = await fetch(`/guardar-turno/delete/${idConsulta}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if(response.ok){
+            loadListaTurnos();
+        };
+    }));
+}
 
 loadListaTurnos();
