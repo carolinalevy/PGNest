@@ -55,9 +55,31 @@
                 <th scope="col">Hora</th>
                 <th scope="col">Especialidad</th>
                 <th scope="col">Médico</th>
+                <th scope="col"></th>
+
               </tr>
             </thead>
             <tbody id="tblHistorial"></tbody>
+            <div class="modal fade text-center" id="myModal" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="text-center modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="text-center modal-header">
+                        <button type="button" class="close" id="dismissCancelation" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       Está seguro que desea cancelar su turno?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="cancel" data-dismiss="modal">Si!</button>
+                        <button type="button" class="btn btn-secondary" id="notCancel" data-dismiss="modal">No!</button>
+
+                    </div>
+
+                </div>
+                </div>
+            </div>
           </table>
         <div>
             <div class="form-row justify-content-sm-center">
