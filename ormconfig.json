@@ -1,10 +1,10 @@
 {
     "type": "mysql",
-    "host": "localhost",
+    "host":  "remotemysql.com",
     "port": 3306,
-    "username": "root",
-    "password": "37014880",
-    "database": "proyecto_grupal_final",
+    "username": "HiX75n5sU9",
+    "password": "1K20LMIBI2",
+    "database": "HiX75n5sU9",
     "entities": [
     "dist/**/**.entity{.ts,.js}"
     ],

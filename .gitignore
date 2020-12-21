@@ -33,8 +33,7 @@ lerna-debug.log*
 .vscode/launch.json
 !.vscode/extensions.json
 
-/ node_modules 
-/ dist 
-npm-debug.log 
-.DS_Store 
+/dist
+npm-debug.log
+.DS_Store
 /*.env
